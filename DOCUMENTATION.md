@@ -82,13 +82,13 @@ Text fields are a type of form used when users must input or edit data through a
 
 ## Selector
 
-Selectors are a type of form used when users must input or edit data through a predetermined set of options. They can be used for either one or multiple-selection items. Interacting with a selector triggers a dropdown list to appear, from where users can select the desired option(s). 
+Selectors are a type of form used when users must input or edit data through a predetermined set of options. They can be used for either one or multiple-selection items. Interacting with a selector triggers a dropdown list to appear, from where users can select the desired option(s).
 
 [PDF](https://drive.google.com/file/d/1tAVuRbZw7axxTQCH6cjPX4fM0z49ALWr/view)
 
 ## Tooltip
 
-Tooltips are used to provide brief supplementary information or help about a specific element. They are triggered by users hovering or focusing via keyboard on the element it's paired to. 
+Tooltips are used to provide brief supplementary information or help about a specific element. They are triggered by users hovering or focusing via keyboard on the element it's paired to.
 
 [PDF](https://drive.google.com/file/d/1SUbSG8YufmoD7RL_KeTPCvkdM-SbUOQJ/view)
 
