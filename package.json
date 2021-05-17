@@ -36,16 +36,16 @@
     "trailingComma": "es5",
     "endOfLine": "auto"
   },
-  "name": "liane-tsdx",
+  "name": "liane-ui",
   "author": "Marcos Javier Riganti",
-  "module": "dist/liane-tsdx.esm.js",
+  "module": "dist/liane-ui.esm.js",
   "size-limit": [
     {
-      "path": "dist/liane-tsdx.cjs.production.min.js",
+      "path": "dist/liane-ui.cjs.production.min.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/liane-tsdx.esm.js",
+      "path": "dist/liane-ui.esm.js",
       "limit": "10 KB"
     }
   ],
