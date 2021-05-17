@@ -34,7 +34,7 @@
     "semi": true,
     "singleQuote": true,
     "trailingComma": "es5",
-    "endOfLine": "lf"
+    "endOfLine": "auto"
   },
   "name": "liane-tsdx",
   "author": "Marcos Javier Riganti",
