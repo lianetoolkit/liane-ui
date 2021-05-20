@@ -42,11 +42,11 @@
   "size-limit": [
     {
       "path": "dist/liane-ui.cjs.production.min.js",
-      "limit": "10 KB"
+      "limit": "500 KB"
     },
     {
       "path": "dist/liane-ui.esm.js",
-      "limit": "10 KB"
+      "limit": "500 KB"
     }
   ],
   "jest": {
