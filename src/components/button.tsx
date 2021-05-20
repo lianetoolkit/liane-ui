@@ -10,12 +10,9 @@ export interface ButtonProps extends HTMLAttributes<HTMLDivElement> {
     | 'destructive'
     | 'inverse';
   size?: 'comfortable' | 'compact';
-  style: any;
-  className: any;
-  // full
-  // styles
-  //
-  // disabled
+  style?: any;
+  className?: any;
+  full?: boolean;
 }
 
 export const Button: FC<ButtonProps> = ({
@@ -24,6 +21,7 @@ export const Button: FC<ButtonProps> = ({
   size,
   style,
   className,
+  full,
 }) => {
   const classSizes =
     size === 'compact' ? 'py-1.5 px-3 text-sm' : 'py-3 px-6 text-base';
@@ -44,9 +42,9 @@ export const Button: FC<ButtonProps> = ({
   return (
     <button
       style={style ?? {}}
-      className={`rounded font-medium	${classSizes} ${
-        type && classTypes[type]
-      } ${className ?? ''}`}
+      className={`rounded font-medium ${
+        full && `w-full inline-block`
+      }	${classSizes} ${type && classTypes[type]} ${className ?? ''}`}
     >
       {children}
     </button>
