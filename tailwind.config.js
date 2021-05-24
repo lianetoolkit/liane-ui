@@ -86,7 +86,11 @@ module.exports = {
       secondary: colors.orange['500'],
       tertiary: colors.yellow['500'],
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+      },
+    },
   },
   variants: {
     extend: {},
