@@ -40,7 +40,7 @@ export const ButtonSwitch: FC<ButtonSwitchProps> = ({
             extraClass += 'rounded-none';
             extraCSS = { borderRadius: 0 };
           }
-          const type = option.value == value ? 'primary' : 'secondary';
+          const type = option.value === value ? 'primary' : 'secondary';
           if (option.disabled) extraClass += ' disabled ';
           return (
             <Button
