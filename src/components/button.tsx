@@ -1,6 +1,6 @@
-import React, { FC, HTMLAttributes, ReactChild } from 'react';
+import React, { FC, ReactChild } from 'react';
 
-export interface ButtonProps extends HTMLAttributes<HTMLDivElement> {
+export interface ButtonProps {
   children?: ReactChild;
   type?:
     | 'primary'
@@ -13,6 +13,8 @@ export interface ButtonProps extends HTMLAttributes<HTMLDivElement> {
   style?: any;
   className?: any;
   full?: boolean;
+  disabled?: boolean;
+  onClick?: Function;
 }
 
 export const Button: FC<ButtonProps> = ({
@@ -22,6 +24,8 @@ export const Button: FC<ButtonProps> = ({
   style,
   className,
   full,
+  onClick,
+  disabled,
 }) => {
   const classSizes =
     size === 'compact' ? 'py-1.5 px-3 text-sm' : 'py-3 px-6 text-base';
@@ -39,12 +43,17 @@ export const Button: FC<ButtonProps> = ({
     inverse:
       'text-purple bg-white hover:bg-purpleLight active:bg-purpleLight-75',
   };
+
   return (
     <button
+      onClick={(ev) => {
+        if (onClick) onClick(ev);
+      }}
+      disabled={disabled ?? false}
       style={style ?? {}}
-      className={`rounded font-medium ${
-        full && `w-full inline-block`
-      }	${classSizes} ${type && classTypes[type]} ${className ?? ''}`}
+      className={`${full ? `w-full inline-block` : ''}	${classSizes} ${
+        type && classTypes[type]
+      } ${className ?? ''} ${disabled ? 'bg-gray' : ''} rounded font-medium `}
     >
       {children}
     </button>
