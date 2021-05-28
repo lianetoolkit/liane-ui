@@ -1,5 +1,4 @@
 import React, { FC, ReactChild } from 'react';
-
 export interface ButtonProps {
   children?: ReactChild;
   type?:

@@ -37,7 +37,7 @@
     "endOfLine": "auto"
   },
   "name": "liane-ui",
-  "author": "Marcos Javier Riganti",
+  "author": "Instituto Update",
   "module": "dist/liane-ui.esm.js",
   "size-limit": [
     {
