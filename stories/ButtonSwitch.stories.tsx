@@ -4,6 +4,7 @@ import {
   ButtonSwitch,
   ButtonSwitchProps,
 } from '../src/components/buttonSwitch';
+import '../src/index.css';
 
 const meta: Meta = {
   title: 'Buttons Switch',
@@ -27,8 +28,8 @@ const Template: Story<ButtonSwitchProps> = (args) => <ButtonSwitch {...args} />;
 export const Default = Template.bind({});
 
 Default.args = {
-  size: 'comfortable',
-  defaultValue: 0,
+  size: 'compact',
+  defaultValue: 3,
   options: [
     {
       value: 0,
@@ -37,10 +38,15 @@ Default.args = {
     {
       value: 1,
       label: 'Option 2',
+      disabled: true,
+    },
+    {
+      value: 2,
+      label: 'Option 3',
     },
     {
       value: 3,
-      label: 'Option 3',
+      label: 'Option 4',
     },
   ],
 };
