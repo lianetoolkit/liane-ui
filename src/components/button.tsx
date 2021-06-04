@@ -1,6 +1,6 @@
-import React, { FC, HTMLAttributes, ReactChild } from 'react';
+import React, { FC, ReactChild } from 'react';
 
-export interface ButtonProps extends HTMLAttributes<HTMLDivElement> {
+export interface ButtonProps {
   children?: ReactChild;
   type?:
     | 'primary'
@@ -13,15 +13,19 @@ export interface ButtonProps extends HTMLAttributes<HTMLDivElement> {
   style?: any;
   className?: any;
   full?: boolean;
+  id?: string;
+  onClick?: Function;
 }
 
 export const Button: FC<ButtonProps> = ({
+  id,
   children,
   type,
   size,
   style,
   className,
   full,
+  onClick,
 }) => {
   const classSizes =
     size === 'compact' ? 'py-1.5 px-3 text-sm' : 'py-3 px-6 text-base';
@@ -42,6 +46,10 @@ export const Button: FC<ButtonProps> = ({
   return (
     <button
       style={style ?? {}}
+      id={id}
+      onClick={(ev) => {
+        if (onClick) onClick(ev);
+      }}
       className={`rounded font-medium ${
         full && `w-full inline-block`
       }	${classSizes} ${type && classTypes[type]} ${className ?? ''}`}
