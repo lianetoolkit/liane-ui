@@ -2,6 +2,6 @@ import './index.css';
 
 //  List of all the compoents here
 // Buttons
-export * from './components/button';
+export * from './components/Button';
 // Switch Button
 export * from './components/buttonSwitch';

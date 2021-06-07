@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import { Button } from './button';
+import { Button } from '../index';
 
 describe('Button', () => {
   it('should render correctly', () => {
