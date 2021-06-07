@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { Button } from './button';
+import { Button } from '../Button';
 
 interface Option {
   label: string;

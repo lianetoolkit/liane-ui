@@ -4,4 +4,4 @@ import './index.css';
 // Buttons
 export * from './components/Button';
 // Switch Button
-export * from './components/buttonSwitch';
+export * from './components/ButtonSwitch';
