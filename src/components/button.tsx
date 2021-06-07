@@ -13,10 +13,12 @@ export interface ButtonProps {
   className?: any;
   full?: boolean;
   disabled?: boolean;
+  id?: string;
   onClick?: Function;
 }
 
 export const Button: FC<ButtonProps> = ({
+  id,
   children,
   type,
   size,
@@ -53,6 +55,7 @@ export const Button: FC<ButtonProps> = ({
       className={`${full ? `w-full inline-block` : ''}	${classSizes} ${
         type && classTypes[type]
       } ${className ?? ''} ${disabled ? 'bg-gray' : ''} rounded font-medium `}
+      id={id}
     >
       {children}
     </button>
