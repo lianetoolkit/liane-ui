@@ -54,7 +54,11 @@ export const Button: FC<ButtonProps> = ({
       style={style ?? {}}
       className={`${full ? `w-full inline-block` : ''}	${classSizes} ${
         type && classTypes[type]
-      } ${className ?? ''} ${disabled ? 'bg-gray' : ''} rounded font-medium `}
+      } ${className ?? ''} ${
+        disabled
+          ? 'bg-gray-200 border-gray-300 text-gray-700 hover:bg-gray-200 hover:text-gray-700 cursor-pointer'
+          : ''
+      } rounded font-medium `}
       id={id}
     >
       {children}

@@ -3,7 +3,7 @@ import { Meta, Story } from '@storybook/react';
 import {
   ButtonSwitch,
   ButtonSwitchProps,
-} from '../src/components/buttonSwitch';
+} from '../src/components/ButtonSwitch';
 import '../src/index.css';
 
 const meta: Meta = {
