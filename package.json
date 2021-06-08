@@ -1,4 +1,5 @@
 {
+  "homepage": "http://lianetoolkit.github.io/liane-ui",
   "version": "0.1.0",
   "license": "MIT",
   "main": "dist/index.js",
@@ -19,6 +20,8 @@
     "size": "size-limit",
     "analyze": "size-limit --why",
     "storybook": "start-storybook -p 6006",
+    "predeploy": "npm run build-storybook",
+    "deploy-storybook": "gh-pages -d storybook-static",
     "build-storybook": "build-storybook"
   },
   "peerDependencies": {
@@ -74,21 +77,22 @@
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.1",
     "autoprefixer": "^9.8.6",
     "babel-loader": "^8.2.2",
+    "chai": "^4.3.4",
     "enzyme": "^3.11.0",
+    "gh-pages": "^3.2.0",
     "husky": "^6.0.0",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^27.0.4",
     "postcss": "^7.0.35",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-is": "^17.0.2",
     "rollup-plugin-postcss": "^4.0.0",
+    "sinon": "^11.1.1",
     "size-limit": "^4.10.2",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.1.2",
     "tsdx": "^0.14.1",
     "tslib": "^2.2.0",
-    "typescript": "^4.2.4",
-    "identity-obj-proxy": "^3.0.0",
-    "chai": "^4.3.4",
-    "sinon": "^11.1.1"
+    "typescript": "^4.2.4"
   }
 }
