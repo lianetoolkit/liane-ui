@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.liu-btn-switch button {
+    @apply border-gray-200 font-medium;
+}
+
+.liu-btn-switch button.disabled {
+    @apply bg-gray-100 text-gray-400 cursor-default;
+}
