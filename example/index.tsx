@@ -1,34 +1,30 @@
 import 'react-app-polyfill/ie11';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Button } from '../.';
+import { Button, ButtonSwitch } from '../.';
 
 const App = () => {
-  const types = [
-    'primary',
-    'secondary',
-    'tertiary',
-    'ghost',
-    'destructive',
-    'inverse',
-  ];
-  const sizes = ['compact', 'comfortable'];
   return (
     <div style={{ padding: 100 }}>
-      {types.map((type) => (
-        <>
-          <div className="my-3">
-            <Button type={type} size={sizes[0]}>
-              button {type} compact
-            </Button>
-          </div>
-          <div>
-            <Button type={type} size={sizes[1]}>
-              button {type} compact
-            </Button>
-          </div>
-        </>
-      ))}
+      <h1>Button Switch</h1>
+      <ButtonSwitch
+        defaultValue={1}
+        options={[
+          {
+            label: 'Opt 1',
+            value: 1,
+          },
+          {
+            label: 'Opt 2',
+            value: 2,
+            disabled: true,
+          },
+          {
+            label: 'Opt 3',
+            value: 3,
+          },
+        ]}
+      />
     </div>
   );
 };

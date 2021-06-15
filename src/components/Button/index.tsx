@@ -1,5 +1,4 @@
 import React, { FC, ReactChild } from 'react';
-
 export interface ButtonProps {
   children?: ReactChild;
   type?:
@@ -13,6 +12,7 @@ export interface ButtonProps {
   style?: any;
   className?: any;
   full?: boolean;
+  disabled?: boolean;
   id?: string;
   onClick?: Function;
 }
@@ -26,6 +26,7 @@ export const Button: FC<ButtonProps> = ({
   className,
   full,
   onClick,
+  disabled,
 }) => {
   const classSizes =
     size === 'compact' ? 'py-1.5 px-3 text-sm' : 'py-3 px-6 text-base';
@@ -43,16 +44,22 @@ export const Button: FC<ButtonProps> = ({
     inverse:
       'text-purple bg-white hover:bg-purpleLight active:bg-purpleLight-75',
   };
+
   return (
     <button
-      style={style ?? {}}
-      id={id}
       onClick={(ev) => {
         if (onClick) onClick(ev);
       }}
-      className={`rounded font-medium ${
-        full && `w-full inline-block`
-      }	${classSizes} ${type && classTypes[type]} ${className ?? ''}`}
+      disabled={disabled ?? false}
+      style={style ?? {}}
+      className={`${full ? `w-full inline-block` : ''}	${classSizes} ${
+        type && classTypes[type]
+      } ${className ?? ''} ${
+        disabled
+          ? 'bg-gray-200 border-gray-300 text-gray-700 hover:bg-gray-200 hover:text-gray-700 cursor-pointer'
+          : ''
+      } rounded font-medium `}
+      id={id}
     >
       {children}
     </button>

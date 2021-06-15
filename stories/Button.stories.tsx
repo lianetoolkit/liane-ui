@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import { Button, ButtonProps } from '../src/components/button';
+import { Button, ButtonProps } from '../src/components/Button';
 import '../src/index.css';
 
 const meta: Meta = {
