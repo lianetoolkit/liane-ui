@@ -5,3 +5,5 @@ import './index.css';
 export * from './components/Button';
 // Switch Button
 export * from './components/ButtonSwitch';
+// Link
+export * from './components/Link';
