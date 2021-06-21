@@ -8,7 +8,7 @@ export interface LinkProps {
   underlined?: boolean;
   id?: string;
   href?: string;
-  _target?: string;
+  target?: string;
   onClick?: Function;
 }
 
@@ -21,7 +21,7 @@ export const Link: FC<LinkProps> = ({
   className,
   onClick,
   color,
-  _target,
+  target,
   href,
 }) => {
   let sizeClass = 'text-base';
@@ -53,7 +53,7 @@ export const Link: FC<LinkProps> = ({
       className={classes}
       href={href}
       id={id}
-      _target={_target}
+      target={target}
       onClick={(ev) => {
         if (onClick) onClick(ev);
       }}
