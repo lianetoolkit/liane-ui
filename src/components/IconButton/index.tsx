@@ -87,6 +87,7 @@ export const IconButton: FC<IconButtonProps> = ({
       id={id}
       onClick={(ev) => {
         ev.preventDefault();
+
         if (disabled) {
           return false;
         }
@@ -94,6 +95,7 @@ export const IconButton: FC<IconButtonProps> = ({
           setChecked(!checked);
         }
         if (onClick) onClick(ev);
+        return false;
       }}
       style={style ?? {}}
     >
