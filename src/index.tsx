@@ -7,3 +7,5 @@ export * from './components/Button';
 export * from './components/ButtonSwitch';
 // Link
 export * from './components/Link';
+// Icon buttons
+export * from './components/IconButton';
