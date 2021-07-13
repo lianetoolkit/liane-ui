@@ -74,6 +74,7 @@ const colors = {
   black: '#000',
   white: '#fff',
   gray: TWColors.trueGray,
+  darkGray: '#757575',
   linkPrimary: '#212121',
 };
 
