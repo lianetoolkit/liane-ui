@@ -62,7 +62,7 @@ export const Tag: FC<TagProps> = ({
       className={classes}
       id={id}
       onClick={(ev) => {
-        if (onClick) onClick(ev);
+        if (onClick && !disabled) onClick(ev);
       }}
       style={style ?? {}}
     >
@@ -73,6 +73,7 @@ export const Tag: FC<TagProps> = ({
           <div
             className="items-center flex"
             onClick={(ev) => {
+              if (disabled) return false;
               ev.preventDefault();
               ev.stopPropagation();
               onClose(ev);
