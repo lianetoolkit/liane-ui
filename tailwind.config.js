@@ -75,7 +75,7 @@ const colors = {
   white: '#fff',
   gray: TWColors.trueGray,
   darkGray: '#757575',
-  linkPrimary: '#212121',
+  darkerGray: '#212121',
 };
 
 module.exports = {

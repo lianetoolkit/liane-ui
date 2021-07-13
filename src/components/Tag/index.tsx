@@ -1,14 +1,16 @@
 import React, { FC, ReactChild } from 'react';
+import Icon from '@material-ui/core/Icon';
+
 export interface TagProps {
   children?: ReactChild;
   // color?: 'main' | 'primary' | 'secondary';
   style?: any;
+  iconName?: string;
   className?: string;
-  // underlined?: boolean;
+  disabled?: boolean;
   shaped: boolean;
   id?: string;
-  href?: string;
-  target?: string;
+  onClose?: Function;
   onClick?: Function;
 }
 
@@ -16,21 +18,37 @@ export const Tag: FC<TagProps> = ({
   id,
   children,
   shaped,
+  iconName,
   // underlined,
   style,
   className,
   onClick,
+  onClose,
   // color,
-  target,
-  href,
+  disabled,
 }) => {
   let sizeClass = 'text-sm';
-  let classes = `${className}  ${sizeClass} rounded-full px-3 py-2 text-darkGray border ${
-    shaped ? `border-gray-100 bg-gray-100` : `border-gray-200 bg-white`
-  }`;
+  let classes = `${
+    className ?? ``
+  }  ${sizeClass}  inline-block rounded-full px-3 py-2  border `;
+  if (disabled) {
+    classes += ' bg-gray-100 text-gray-400';
+  } else {
+    classes += ` ${
+      shaped ? `border-gray-100 bg-gray-100` : `border-gray-200 bg-white`
+    } `;
+
+    if (onClick) {
+      classes +=
+        ' text-darkerGray hover:bg-gray-50 focus:bg-purple focus:border-purple focus:text-white';
+    } else {
+      classes += ' text-darkGray ';
+    }
+  }
+
   // switch (color) {
   //   case 'primary':
-  //     classes += ` text-linkPrimary hover:text-linkPrimary visited:text-linkPrimary`;
+  //     classes += ` text-darkerGray hover:text-darkerGray visited:text-darkerGray`;
   //     break;
   //   case 'secondary':
   //     classes += ` text-gray-500 hover:text-gray-400 visited:text-gray-700`;
@@ -40,17 +58,30 @@ export const Tag: FC<TagProps> = ({
   // }
 
   return (
-    <a
+    <button
       className={classes}
-      href={href}
       id={id}
-      target={target}
       onClick={(ev) => {
         if (onClick) onClick(ev);
       }}
       style={style ?? {}}
     >
-      {children}
-    </a>
+      <span className="flex items-center space-x-1">
+        {iconName && <Icon fontSize="small">{iconName}</Icon>}
+        <span>{children}</span>
+        {onClose && (
+          <div
+            className="items-center flex"
+            onClick={(ev) => {
+              ev.preventDefault();
+              ev.stopPropagation();
+              onClose(ev);
+            }}
+          >
+            <Icon fontSize="small">close</Icon>
+          </div>
+        )}
+      </span>
+    </button>
   );
 };

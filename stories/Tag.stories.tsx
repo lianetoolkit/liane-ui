@@ -27,7 +27,13 @@ const Template: Story<TagProps> = (args) => <Tag {...args} />;
 export const Default = Template.bind({});
 
 Default.args = {
-  color: 'main',
-  children: 'Testing a Tag',
+  children: 'Delete',
   size: 'md',
+  iconName: 'delete',
+  onClick: () => {
+    alert('hey ');
+  },
+  onClose: () => {
+    alert('bye ');
+  },
 };
