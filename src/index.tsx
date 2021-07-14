@@ -9,3 +9,5 @@ export * from './components/ButtonSwitch';
 export * from './components/Link';
 // Icon buttons
 export * from './components/IconButton';
+// Tag
+export * from './components/Tag';

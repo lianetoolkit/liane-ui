@@ -39,7 +39,7 @@ export const Link: FC<LinkProps> = ({
   let classes = `${className} ${underlined && 'underline'} ${sizeClass}`;
   switch (color) {
     case 'primary':
-      classes += ` text-linkPrimary hover:text-linkPrimary visited:text-linkPrimary`;
+      classes += ` text-darkerGray hover:text-darkerGray visited:text-darkerGray`;
       break;
     case 'secondary':
       classes += ` text-gray-500 hover:text-gray-400 visited:text-gray-700`;

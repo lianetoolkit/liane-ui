@@ -1,8 +1,7 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import { ButtonSwitch } from '../index';
 import { expect } from 'chai';
-import { Button } from '../../Button/index';
 
 describe('ButtonSwitch', () => {
   it('renders Button components', () => {
