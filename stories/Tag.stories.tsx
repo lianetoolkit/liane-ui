@@ -25,14 +25,24 @@ const Template: Story<TagProps> = (args) => <Tag {...args} />;
 // By passing using the Args format for exported stories, you can control the props for a component for reuse in a test
 // https://storybook.js.org/docs/react/workflows/unit-testing
 export const Default = Template.bind({});
-
+export const Clickable = Template.bind({});
+export const Close = Template.bind({});
 Default.args = {
   children: 'Delete',
-  size: 'md',
+  iconName: 'star',
+  onClick: null,
+};
+Clickable.args = {
+  children: 'Delete',
   iconName: 'delete',
+  onClose: null,
   onClick: () => {
-    alert('hey ');
+    alert('hey');
   },
+};
+Close.args = {
+  children: 'Close me',
+  onClick: null,
   onClose: () => {
     alert('bye ');
   },

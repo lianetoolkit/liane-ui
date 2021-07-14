@@ -19,7 +19,6 @@ export const Tag: FC<TagProps> = ({
   children,
   shaped,
   iconName,
-  // underlined,
   style,
   className,
   onClick,
@@ -38,7 +37,7 @@ export const Tag: FC<TagProps> = ({
       shaped ? `border-gray-100 bg-gray-100` : `border-gray-200 bg-white`
     } `;
 
-    if (onClick) {
+    if (onClick || onClose) {
       classes +=
         ' text-darkerGray hover:bg-gray-50 focus:bg-purple focus:border-purple focus:text-white';
     } else {
@@ -56,7 +55,6 @@ export const Tag: FC<TagProps> = ({
   //   default:
   //     classes += ` text-purple-500 hover:text-purple-400 visited:text-purple-700`;
   // }
-
   return (
     <button
       className={classes}
@@ -77,6 +75,7 @@ export const Tag: FC<TagProps> = ({
               ev.preventDefault();
               ev.stopPropagation();
               onClose(ev);
+              return false;
             }}
           >
             <Icon fontSize="small">close</Icon>
