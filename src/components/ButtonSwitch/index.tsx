@@ -41,7 +41,9 @@ export const ButtonSwitch: FC<ButtonSwitchProps> = ({
             extraCSS = { borderRadius: 0 };
           }
           const type = option.value === value ? 'primary' : 'secondary';
-          if (option.disabled) extraClass += ' disabled ';
+          extraClass += option.disabled
+            ? ' disabled '
+            : ' hover:border-purple ';
           return (
             <Button
               style={extraCSS}
