@@ -11,3 +11,6 @@ export * from './components/Link';
 export * from './components/IconButton';
 // Tag
 export * from './components/Tag';
+// Tab
+export * from './components/Tab';
+// Tabs
