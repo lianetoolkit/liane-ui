@@ -7,7 +7,6 @@ const options = [
   { value: 'chocolate', label: 'Chocolate' },
   { value: 'strawberry', label: 'Strawberry' },
   { value: 'vanilla', label: 'Vanilla' },
-  { value: 'vanilla', label: 'Vanilla' },
 ];
 
 const App = () => {
@@ -17,7 +16,15 @@ const App = () => {
       Testing:
       <IconButton iconName="delete" />*/}
 
+
       <Select options={options}/>
+
+
+{/*<input type="text" name="city" list="citynames" />
+<datalist id="citynames">
+  <option value="Boston"/>
+  <option value="Cambridge"/>
+</datalist>*/}
       {/*<Button type={'tertiary'} >dsakdsal</Button>*/}
     </div>
   );

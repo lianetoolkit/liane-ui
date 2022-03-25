@@ -1,6 +1,9 @@
 import React, { FC } from 'react';
 import SelectLib from 'react-select';
 
+
+import { SelectComponent } from "./SelectComponent";
+
 //import ArrowDown from './ArrowDropDown';
 
 export interface SelectProps {
@@ -14,56 +17,13 @@ export interface SelectProps {
   hint?: string;
 }
 
-interface ArrowDownProps {
-  className?: string;
-}
-
-const ArrowDown: FC<ArrowDownProps> = ({ className }) => {
-  return (
-    <div className={className}>
-      <svg
-        className="mr-4"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path d="M7 10L12 15L17 10H7Z" fill="#212121" />
-      </svg>
-    </div>
-  );
-};
-
-interface ClearIndicatorProps {
-  className?: string;
-}
-
-const ClearIndicator: FC<ClearIndicatorProps> = ({ className }) => {
-  return (
-    <div className={className + ''}>
-      <svg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M12 2C6.47 2 2 6.47 2 12C2 17.53 6.47 22 12 22C17.53 22 22 17.53 22 12C22 6.47 17.53 2 12 2ZM17 15.59L15.59 17L12 13.41L8.41 17L7 15.59L10.59 12L7 8.41L8.41 7L12 10.59L15.59 7L17 8.41L13.41 12L17 15.59Z"
-          fill="#212121"
-        />
-      </svg>
-    </div>
-  );
-};
 
 export const Select: FC<SelectProps> = ({
   //id,
   //children,
   //size,
   //style,
-  className,
+  //className,
   options,
   //hint,
   //full,
@@ -90,9 +50,11 @@ export const Select: FC<SelectProps> = ({
     <div>
       <h1 className="font-medium text-black">Label</h1>
       {/*{hint ? <p>hint</p> : null}*/}
-      <p className="mt-1 font-normal text-gray-500">Hint is optional</p>
+    <p className="mt-1 font-normal text-gray-500">Hint is optional</p>
 
-      <SelectLib
+      <SelectComponent options={options} />
+
+      {/*<SelectLib
         className={
           className +
           'mt-1 text-black font-normal border-gray hover:border-black focus:border-black'
@@ -107,7 +69,7 @@ export const Select: FC<SelectProps> = ({
           DropdownIndicator: () => <ArrowDown />,
           //ClearIndicator: () => <ClearIndicator />,
         }}
-      />
+      />*/}
     </div>
   );
 };
