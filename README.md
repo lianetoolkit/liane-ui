@@ -2,6 +2,10 @@
 
 Design system for Liane
 
+## Figma
+
+UI Design placed in https://www.figma.com/file/8KXcNUwilQGGHrUmnb9dCV/Liane-Design-System?node-id=728%3A291
+
 ## Tech
 
 We use TSdx
@@ -32,5 +36,7 @@ To open the new one:
 `npm run storybook`
 
 Will run up on http://localhost:6006/ and we can check from there how the documentaiton will look like.
+
+To view Storybook online: http://lianetoolkit.github.io/liane-ui
 
 # Deploy
