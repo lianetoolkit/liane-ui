@@ -40,3 +40,11 @@ Will run up on http://localhost:6006/ and we can check from there how the docume
 To view Storybook online: http://lianetoolkit.github.io/liane-ui
 
 # Deploy
+
+2 Steps deploy
+
+`npm run predeploy`
+
+Then to update the url
+
+`npm run deploy-storybook`
