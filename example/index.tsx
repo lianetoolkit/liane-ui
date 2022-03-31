@@ -13,8 +13,7 @@ const App = () => {
   const [value, setValue] = React.useState('');
 
   React.useEffect(() => {
-    console.log("klasdjdlaskjdaskljdsakljklasddaskl " + value);
-
+    console.log('klasdjdlaskjdaskljdsakljklasddaskl ' + value);
   }, [value]);
 
   return (
@@ -22,7 +21,7 @@ const App = () => {
       <Select
         options={options}
         hint="Hint is optional"
-        isMulti={false}
+        isMulti={true}
         value={value}
         setValue={setValue}
         disabled={false}

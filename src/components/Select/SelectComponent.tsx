@@ -22,7 +22,10 @@ const ArrowDown: FC<ArrowDownProps> = ({ className, rotate, disabled }) => {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-      <path d="M7 10L12 15L17 10H7Z" fill={disabled ? '#BDBDBD' : '#212121'} />
+        <path
+          d="M7 10L12 15L17 10H7Z"
+          fill={disabled ? '#BDBDBD' : '#212121'}
+        />
       </svg>
     </div>
   );
@@ -192,7 +195,7 @@ export const SelectComponent: FC<SelectComponentProps> = ({
     >
       <button
         onClick={() => {
-          disabled ? '' : setActive(!active)
+          disabled ? '' : setActive(!active);
         }}
         className={
           disabled
@@ -225,36 +228,38 @@ export const SelectComponent: FC<SelectComponentProps> = ({
             ''
           )}
 
-          {isMulti && selecteds.size >= 1
-            ? (() => {
-                let selects = Array.from(selecteds);
-                console.log(value);
+          {isMulti && selecteds.size >= 1 ? (
+            (() => {
+              let selects = Array.from(selecteds);
+              console.log(value);
 
-                return (
-                  <div className="absolute flex flex-row items-center h-10 top-1">
-                    {selects.map((select) => {
-                      return (
-                        <div
-                          className="flex flex-row justify-between items-center text-left h-6 px-2 py-0.5 text-sm bg-gray-100 text-normal hover:bg-gray-50 mr-1"
-                          style={{
-                            borderRadius: '500px',
-                            letterSpacing: '0.01em',
-                          }}
-                          onClick={() => {
-                            selecteds.delete(select);
-                            setSelecteds(selecteds);
-                            setValue(selecteds);
-                          }}
-                        >
-                          {select.label}
-                          <CloseX />
-                        </div>
-                      );
-                    })}
-                  </div>
-                );
-              })()
-            : 'Select...'}
+              return (
+                <div className="absolute flex flex-row items-center h-10 top-1">
+                  {selects.map((select) => {
+                    return (
+                      <div
+                        className="flex flex-row justify-between items-center text-left h-6 px-2 py-0.5 text-sm bg-gray-100 text-normal hover:bg-gray-50 mr-1"
+                        style={{
+                          borderRadius: '500px',
+                          letterSpacing: '0.01em',
+                        }}
+                        onClick={() => {
+                          selecteds.delete(select);
+                          setSelecteds(selecteds);
+                          setValue(selecteds);
+                        }}
+                      >
+                        {select.label}
+                        <CloseX />
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            })()
+          ) : (
+            <div className={disabled ? 'text-gray-400' : ''}>Select...</div>
+          )}
         </div>
         <div className="flex flex-row">
           {focus && selected !== '' && !isMulti && !disabled ? (
@@ -267,7 +272,11 @@ export const SelectComponent: FC<SelectComponentProps> = ({
               className="mr-4"
             />
           ) : null}
-          <ArrowDown className="" rotate={active ? 'rotate(180)' : ''} disabled={disabled} />
+          <ArrowDown
+            className=""
+            rotate={active ? 'rotate(180)' : ''}
+            disabled={disabled}
+          />
         </div>
       </button>
 
