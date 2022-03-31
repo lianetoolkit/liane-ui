@@ -7,9 +7,10 @@ import searchFor from '../../utils/searchObjectValues';
 interface ArrowDownProps {
   className?: string;
   rotate?: string;
+  disabled?: boolean;
 }
 
-const ArrowDown: FC<ArrowDownProps> = ({ className, rotate }) => {
+const ArrowDown: FC<ArrowDownProps> = ({ className, rotate, disabled }) => {
   return (
     <div className={className + ' w-6'}>
       <svg
@@ -21,7 +22,7 @@ const ArrowDown: FC<ArrowDownProps> = ({ className, rotate }) => {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <path d="M7 10L12 15L17 10H7Z" fill="#212121" />
+      <path d="M7 10L12 15L17 10H7Z" fill={disabled ? '#BDBDBD' : '#212121'} />
       </svg>
     </div>
   );
@@ -124,7 +125,7 @@ interface SelectComponentProps {
   disabled?: boolean;
   id?: string;
   options: Array<Object>;
-  //value: any;
+  value: any;
   setValue: Function;
   isMulti?: boolean;
 }
@@ -136,11 +137,10 @@ export const SelectComponent: FC<SelectComponentProps> = ({
   //style,
   //className,
   options,
+  value,
   setValue,
-  //hint,
-  //full,
-  //disabled,
   isMulti,
+  disabled,
 }) => {
   //const classSizes =
   //size === 'compact' ? 'py-1.5 px-3 text-sm' : 'py-3 px-6 text-base';
@@ -154,6 +154,7 @@ export const SelectComponent: FC<SelectComponentProps> = ({
 
   useEffect(() => {
     setOptionsQuery(options);
+    console.log(disabled);
   }, []);
 
   useEffect(() => {
@@ -168,11 +169,20 @@ export const SelectComponent: FC<SelectComponentProps> = ({
 
   useEffect(() => {
     setValue(selecteds);
+    console.log('value: ' + value);
   }, [selecteds]);
+
+  useEffect(() => {
+    console.log('value: ' + value);
+  }, [value]);
 
   return (
     <div
-      className="relative inline-block cursor-pointer"
+      className={
+        disabled
+          ? 'relative inline-block cursor-not-allowed bg-gray-100'
+          : 'relative inline-block cursor-pointer'
+      }
       onMouseEnter={() => {
         setFocus(true);
       }}
@@ -182,9 +192,13 @@ export const SelectComponent: FC<SelectComponentProps> = ({
     >
       <button
         onClick={() => {
-          setActive(!active);
+          disabled ? '' : setActive(!active)
         }}
-        className="flex flex-row justify-between h-12 px-4 py-3 border rounded w-72 border-gray"
+        className={
+          disabled
+            ? 'flex flex-row justify-between h-12 px-4 py-3 border rounded w-72 border-gray cursor-not-allowed'
+            : 'flex flex-row justify-between h-12 px-4 py-3 border rounded w-72 border-gray'
+        }
       >
         <div
           className="font-normal"
@@ -200,7 +214,12 @@ export const SelectComponent: FC<SelectComponentProps> = ({
               value={query}
               onChange={({ target }) => setQuery(target.value)}
               className="absolute h-10 outline-none w-44 top-1 focus-within:no-underline"
+              style={{
+                background: disabled ? '#F5F5F5' : '',
+                cursor: disabled ? 'not-allowed' : 'auto',
+              }}
               placeholder="Select..."
+              disabled={disabled}
             />
           ) : (
             ''
@@ -209,7 +228,7 @@ export const SelectComponent: FC<SelectComponentProps> = ({
           {isMulti && selecteds.size >= 1
             ? (() => {
                 let selects = Array.from(selecteds);
-                console.log(selects);
+                console.log(value);
 
                 return (
                   <div className="absolute flex flex-row items-center h-10 top-1">
@@ -238,7 +257,7 @@ export const SelectComponent: FC<SelectComponentProps> = ({
             : 'Select...'}
         </div>
         <div className="flex flex-row">
-          {focus && selected !== '' && !isMulti ? (
+          {focus && selected !== '' && !isMulti && !disabled ? (
             <ClearIndicator
               onClick={() => {
                 setSelected('');
@@ -248,11 +267,11 @@ export const SelectComponent: FC<SelectComponentProps> = ({
               className="mr-4"
             />
           ) : null}
-          <ArrowDown className="" rotate={active ? 'rotate(180)' : ''} />
+          <ArrowDown className="" rotate={active ? 'rotate(180)' : ''} disabled={disabled} />
         </div>
       </button>
 
-      {active && !isMulti ? (
+      {active && !isMulti && !disabled ? (
         <div
           className="absolute right-0 py-4 bg-white rounded w-72 origin-top-right ring-1 ring-black ring-opacity-5 focus:outline-none"
           style={{
@@ -280,7 +299,7 @@ export const SelectComponent: FC<SelectComponentProps> = ({
         </div>
       ) : null}
 
-      {active && isMulti ? (
+      {active && isMulti && !disabled ? (
         <div
           className="absolute right-0 py-4 bg-white rounded w-72 origin-top-right ring-1 ring-black ring-opacity-5 focus:outline-none"
           style={{

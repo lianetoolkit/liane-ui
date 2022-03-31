@@ -13,28 +13,8 @@ argglobal
 set stal=2
 tabnew
 tabnew
-tabnew
-tabnew
 tabrewind
 edit ./src/components/Select/index.tsx
-let s:save_splitbelow = &splitbelow
-let s:save_splitright = &splitright
-set splitbelow splitright
-wincmd _ | wincmd |
-vsplit
-1wincmd h
-wincmd w
-let &splitbelow = s:save_splitbelow
-let &splitright = s:save_splitright
-wincmd t
-let s:save_winminheight = &winminheight
-let s:save_winminwidth = &winminwidth
-set winminheight=0
-set winheight=1
-set winminwidth=0
-set winwidth=1
-exe 'vert 1resize ' . ((&columns * 94 + 94) / 188)
-exe 'vert 2resize ' . ((&columns * 93 + 94) / 188)
 argglobal
 balt ./src/components/Select/index.tsx
 setlocal fdm=manual
@@ -47,38 +27,12 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 55 - ((21 * winheight(0) + 18) / 36)
+let s:l = 59 - ((22 * winheight(0) + 18) / 36)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 55
-normal! $
-wincmd w
-argglobal
-if bufexists("./src/components/Select/index.tsx") | buffer ./src/components/Select/index.tsx | else | edit ./src/components/Select/index.tsx | endif
-if &buftype ==# 'terminal'
-  silent file ./src/components/Select/index.tsx
-endif
-balt ./src/components/Select/index.tsx
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 27 - ((11 * winheight(0) + 18) / 36)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 27
-normal! 012|
-wincmd w
-exe 'vert 1resize ' . ((&columns * 94 + 94) / 188)
-exe 'vert 2resize ' . ((&columns * 93 + 94) / 188)
+keepjumps 59
+normal! 051|
 tabnext
 edit src/components/Select/SelectComponent.tsx
 let s:save_splitbelow = &splitbelow
@@ -111,12 +65,12 @@ setlocal fdn=20
 setlocal nofen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 211 - ((9 * winheight(0) + 18) / 36)
+let s:l = 264 - ((19 * winheight(0) + 18) / 36)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 211
-normal! 053|
+keepjumps 264
+normal! 011|
 wincmd w
 argglobal
 if bufexists("src/components/Select/SelectComponent.tsx") | buffer src/components/Select/SelectComponent.tsx | else | edit src/components/Select/SelectComponent.tsx | endif
@@ -134,55 +88,15 @@ setlocal fdn=20
 setlocal nofen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 166 - ((23 * winheight(0) + 18) / 36)
+let s:l = 303 - ((18 * winheight(0) + 18) / 36)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 166
-normal! 06|
+keepjumps 303
+normal! 031|
 wincmd w
 exe 'vert 1resize ' . ((&columns * 94 + 94) / 188)
 exe 'vert 2resize ' . ((&columns * 93 + 94) / 188)
-tabnext
-edit src/components/Link/index.tsx
-argglobal
-balt src/components/Link/index.tsx
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 57 - ((27 * winheight(0) + 18) / 36)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 57
-normal! 013|
-tabnext
-edit ./src/components/Button/index.tsx
-argglobal
-balt ./src/components/ButtonSwitch/index.tsx
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 62 - ((29 * winheight(0) + 18) / 36)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 62
-normal! 02|
 tabnext
 edit ./example/index.tsx
 argglobal
@@ -197,21 +111,21 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 15 - ((14 * winheight(0) + 18) / 36)
+let s:l = 24 - ((23 * winheight(0) + 18) / 36)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 15
-normal! 010|
+keepjumps 24
+normal! 022|
 tabnext 2
 set stal=1
-badd +2 ./src/components/Select/index.tsx
-badd +208 src/components/Select/SelectComponent.tsx
-badd +1 src/components/Link/index.tsx
-badd +63 ./src/components/Button/index.tsx
-badd +1 ./example/index.tsx
-badd +0 src/components/Select/CheckBox.tsx
-badd +1 ./src/components/ButtonSwitch/index.tsx
+badd +59 ./src/components/Select/index.tsx
+badd +270 src/components/Select/SelectComponent.tsx
+badd +0 src/components/Link/index.tsx
+badd +7 ./src/components/Button/index.tsx
+badd +24 ./example/index.tsx
+badd +1 src/components/Select/CheckBox.tsx
+badd +0 ./src/components/ButtonSwitch/index.tsx
 badd +20 ./tsconfig.json
 badd +8 .gitignore
 badd +1 dist/index.d.ts

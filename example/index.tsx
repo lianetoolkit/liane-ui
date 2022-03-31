@@ -21,9 +21,11 @@ const App = () => {
     <div style={{ padding: 100 }}>
       <Select
         options={options}
-        isMulti={true}
+        hint="Hint is optional"
+        isMulti={false}
         value={value}
         setValue={setValue}
+        disabled={false}
       />
     </div>
   );

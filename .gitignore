@@ -4,5 +4,5 @@ node_modules
 .cache
 dist
 storybook-static
-*.vim
+session.vim
 
