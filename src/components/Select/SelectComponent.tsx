@@ -1,5 +1,7 @@
 import React, { FC, MouseEventHandler, useState, useEffect } from 'react';
 
+import CheckBox from './CheckBox';
+
 import searchFor from '../../utils/searchObjectValues';
 
 interface ArrowDownProps {
@@ -72,11 +74,46 @@ const CheckedIndicator: FC<CheckedIndicatorProps> = ({ className }) => {
   );
 };
 
+interface CloseXProps {
+  className?: string;
+  onClick?: MouseEventHandler;
+}
+
+const CloseX: FC<CloseXProps> = ({ className, onClick }) => {
+  return (
+    <div className={className + ' w-4 cursor-pointer'} onClick={onClick}>
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 16 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12.2005 3.80665C11.9405 3.54665 11.5205 3.54665 11.2605 3.80665L8.00047 7.05998L4.74047 3.79998C4.48047 3.53998 4.06047 3.53998 3.80047 3.79998C3.54047 4.05998 3.54047 4.47998 3.80047 4.73998L7.06047 7.99998L3.80047 11.26C3.54047 11.52 3.54047 11.94 3.80047 12.2C4.06047 12.46 4.48047 12.46 4.74047 12.2L8.00047 8.93998L11.2605 12.2C11.5205 12.46 11.9405 12.46 12.2005 12.2C12.4605 11.94 12.4605 11.52 12.2005 11.26L8.94047 7.99998L12.2005 4.73998C12.4538 4.48665 12.4538 4.05998 12.2005 3.80665Z"
+          fill="#212121"
+        />
+      </svg>
+    </div>
+  );
+};
+
+{
+  /*<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.2005 3.80665C11.9405 3.54665 11.5205 3.54665 11.2605 3.80665L8.00047 7.05998L4.74047 3.79998C4.48047 3.53998 4.06047 3.53998 3.80047 3.79998C3.54047 4.05998 3.54047 4.47998 3.80047 4.73998L7.06047 7.99998L3.80047 11.26C3.54047 11.52 3.54047 11.94 3.80047 12.2C4.06047 12.46 4.48047 12.46 4.74047 12.2L8.00047 8.93998L11.2605 12.2C11.5205 12.46 11.9405 12.46 12.2005 12.2C12.4605 11.94 12.4605 11.52 12.2005 11.26L8.94047 7.99998L12.2005 4.73998C12.4538 4.48665 12.4538 4.05998 12.2005 3.80665Z" fill="#212121"/>
+</svg>*/
+}
 
 // types
 type Option = {
-  value: string,
-  label: string,
+  value: string;
+  label: string;
+};
+
+{
+  /*type Selecteds = {
+
+}*/
 }
 
 interface SelectComponentProps {
@@ -86,7 +123,10 @@ interface SelectComponentProps {
   full?: boolean;
   disabled?: boolean;
   id?: string;
-  options: any;
+  options: Array<Object>;
+  //value: any;
+  setValue: Function;
+  isMulti?: boolean;
 }
 
 export const SelectComponent: FC<SelectComponentProps> = ({
@@ -96,69 +136,39 @@ export const SelectComponent: FC<SelectComponentProps> = ({
   //style,
   //className,
   options,
+  setValue,
   //hint,
   //full,
   //disabled,
+  isMulti,
 }) => {
   //const classSizes =
   //size === 'compact' ? 'py-1.5 px-3 text-sm' : 'py-3 px-6 text-base';
-  //const classTypes = {
-  //primary:
-  //'bg-purple border border-purple text-white hover:bg-purple-400 active:bg-purple-700',
-  //secondary:
-  //'bg-white border border-purple text-purple hover:bg-purpleLight active:bg-purpleLight-75',
-  //tertiary:
-  //'bg-white border border-gray text-black hover:bg-gray-50 active:bg-gray-100',
-  //ghost:
-  //'bg-transparent  text-purple hover:bg-purpleLight active:bg-purpleLight-75',
-  //destructive:
-  //'bg-red border border-red text-white hover:bg-red-400 active:bg-red-700',
-  //inverse:
-  //'text-purple bg-white hover:bg-purpleLight active:bg-purpleLight-75',
-  //}
 
   const [active, setActive] = useState(false);
   const [selected, setSelected] = useState(Object);
   const [focus, setFocus] = useState(false);
   const [query, setQuery] = useState('');
   const [optionsQuery, setOptionsQuery] = useState(new Array());
-  //const [optionslabels, setOptionsLabels] = useState(false);
-
-  //useEffect(() => {
-  //console.log(options);
-  //options.map((object: Object) => {
-  //for (let [key, value] of Object.entries(object)) {
-  //console.log(`${key}: ${value}`);
-  //}
-  //});
-  //});
+  const [selecteds, setSelecteds] = useState<Set<Option>>(new Set());
 
   useEffect(() => {
     setOptionsQuery(options);
   }, []);
 
   useEffect(() => {
-    //console.log(optionsQuery);
-    //console.log(options)
-    //console.log(searchFor(options, 'choco'));
-    //let a = searchFor(options, query);
     setOptionsQuery(searchFor(options, query));
   }, [query]);
 
   useEffect(() => {
-    //if(selected == '') {
-      //setOptionsQuery(options);
-      //console.log("skadjdasl")
-      
-    //}
+    setOptionsQuery(options);
 
-      setOptionsQuery(options);
-  }, [selected])
+    setValue(selected);
+  }, [selected]);
 
-  //useEffect(() => {
-  //const a =
-  //setOptionsLabels(optio)
-  //}, []);
+  useEffect(() => {
+    setValue(selecteds);
+  }, [selecteds]);
 
   return (
     <div
@@ -176,21 +186,63 @@ export const SelectComponent: FC<SelectComponentProps> = ({
         }}
         className="flex flex-row justify-between h-12 px-4 py-3 border rounded w-72 border-gray"
       >
-        <div className="font-normal text-black">
+        <div
+          className="font-normal"
+          style={{
+            color: '#212121',
+          }}
+        >
           {/*{selected !== '' ? selected : 'Select'}*/}
-          <input
-            type="text"
-            value={query}
-            onChange={({ target }) => setQuery(target.value)}
-            className="absolute h-10 outline-none w-44 top-1 focus-within:no-underline"
-            placeholder="Select..."
-          />
+
+          {!isMulti ? (
+            <input
+              type="text"
+              value={query}
+              onChange={({ target }) => setQuery(target.value)}
+              className="absolute h-10 outline-none w-44 top-1 focus-within:no-underline"
+              placeholder="Select..."
+            />
+          ) : (
+            ''
+          )}
+
+          {isMulti && selecteds.size >= 1
+            ? (() => {
+                let selects = Array.from(selecteds);
+                console.log(selects);
+
+                return (
+                  <div className="absolute flex flex-row items-center h-10 top-1">
+                    {selects.map((select) => {
+                      return (
+                        <div
+                          className="flex flex-row justify-between items-center text-left h-6 px-2 py-0.5 text-sm bg-gray-100 text-normal hover:bg-gray-50 mr-1"
+                          style={{
+                            borderRadius: '500px',
+                            letterSpacing: '0.01em',
+                          }}
+                          onClick={() => {
+                            selecteds.delete(select);
+                            setSelecteds(selecteds);
+                            setValue(selecteds);
+                          }}
+                        >
+                          {select.label}
+                          <CloseX />
+                        </div>
+                      );
+                    })}
+                  </div>
+                );
+              })()
+            : 'Select...'}
         </div>
         <div className="flex flex-row">
-          {focus && selected !== '' ? (
+          {focus && selected !== '' && !isMulti ? (
             <ClearIndicator
               onClick={() => {
                 setSelected('');
+                setValue('');
                 setQuery('');
               }}
               className="mr-4"
@@ -200,91 +252,67 @@ export const SelectComponent: FC<SelectComponentProps> = ({
         </div>
       </button>
 
-      {active ? (
+      {active && !isMulti ? (
         <div
-          className="absolute right-0 bg-white rounded w-72 origin-top-right ring-1 ring-black ring-opacity-5 focus:outline-none"
+          className="absolute right-0 py-4 bg-white rounded w-72 origin-top-right ring-1 ring-black ring-opacity-5 focus:outline-none"
           style={{
             boxShadow:
               '0px 0px 2px rgba(0, 0, 0, 0.24), 0px 2px 4px rgba(0, 0, 0, 0.16)',
           }}
         >
-          {}
           <div className="py-1">
-          {optionsQuery.map((option: Option) => {
-                return (
-                  <button
-                    onClick={() => {
-                      setSelected(option);
-                      setQuery(option.label);
-                    }}
-                    className="flex flex-row justify-between block w-full px-4 py-2 text-base text-left text-gray-700 hover:bg-gray-50"
-                  >
-                    {option.label}
-                    {selected.value === option.value ? <CheckedIndicator /> : ''}
-                  </button>
-                );
-          })
-
-          }
-            {/*{optionsQuery.map((object: Object) => {
-              for (let [key, value] of Object.entries(object)) {
-                return (
-                  <button
-                    onClick={() => {
-                      setSelected({key, value});
-                      setQuery(value);
-                    }}
-                    className="flex flex-row justify-between block w-full px-4 py-2 text-base text-left text-gray-700 hover:bg-gray-50"
-                  >
-                    {value}
-                    {selected.key === key ? <CheckedIndicator /> : ''}
-                  </button>
-                );
-              }
-              return null;
-            })}*/}
+            {optionsQuery.map((option: Option) => {
+              return (
+                <button
+                  onClick={() => {
+                    setSelected(option);
+                    setValue(option);
+                    setQuery(option.label);
+                  }}
+                  className="flex flex-row justify-between block w-full px-4 py-2 text-base text-left text-gray-700 hover:bg-gray-50"
+                >
+                  {option.label}
+                  {selected.value === option.value ? <CheckedIndicator /> : ''}
+                </button>
+              );
+            })}
           </div>
         </div>
       ) : null}
 
-      {/*<div className="relative inline-block text-left">
-  <div>
-    <button type="button" className="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500" id="menu-button" aria-expanded="true" aria-haspopup="true">
-      Options
-      <svg className="w-5 h-5 ml-2 -mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-      </svg>
-    </button>
-  </div>
-
-  <div className="absolute right-0 w-56 mt-2 bg-white shadow-lg origin-top-right rounded-md ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button">
-    <div className="py-1" role="none">
-      <a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" id="menu-item-0">Account settings</a>
-      <a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" id="menu-item-1">Support</a>
-      <a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" id="menu-item-2">License</a>
-      <form method="POST" action="#" role="none">
-        <button type="submit" className="block w-full px-4 py-2 text-sm text-left text-gray-700" role="menuitem" id="menu-item-3">Sign out</button>
-      </form>
-    </div>
-  </div>
-</div>*/}
-
-      {/*<SelectLib
-        className={
-          className +
-          'mt-1 text-black font-normal border-gray hover:border-black focus:border-black'
-        }
-        classNamePrefix="select"
-        options={options}
-        isClearable={true}
-        //isMulti={true}
-        //isDisabled={true}
-        components={{
-          IndicatorSeparator: () => null,
-          DropdownIndicator: () => <ArrowDown />,
-          //ClearIndicator: () => <ClearIndicator />,
-        }}
-      />*/}
+      {active && isMulti ? (
+        <div
+          className="absolute right-0 py-4 bg-white rounded w-72 origin-top-right ring-1 ring-black ring-opacity-5 focus:outline-none"
+          style={{
+            boxShadow:
+              '0px 0px 2px rgba(0, 0, 0, 0.24), 0px 2px 4px rgba(0, 0, 0, 0.16)',
+          }}
+        >
+          <div className="py-1">
+            {optionsQuery.map((option: Option) => {
+              return (
+                <button
+                  onClick={() => {
+                    if (selecteds.has(option)) {
+                      selecteds.delete(option);
+                      setSelecteds(selecteds);
+                      setValue(selecteds);
+                    } else {
+                      selecteds.add(option);
+                      setSelecteds(selecteds);
+                      setValue(selecteds);
+                    }
+                  }}
+                  className="flex flex-row items-center block w-full px-4 py-2 text-base text-left text-gray-700 hover:bg-gray-50"
+                >
+                  <CheckBox checked={selecteds.has(option)} />
+                  <p className="ml-2 text-sm text-black">{option.label}</p>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 };

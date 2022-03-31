@@ -1,8 +1,7 @@
 import React, { FC } from 'react';
 import SelectLib from 'react-select';
 
-
-import { SelectComponent } from "./SelectComponent";
+import { SelectComponent } from './SelectComponent';
 
 //import ArrowDown from './ArrowDropDown';
 
@@ -14,9 +13,11 @@ export interface SelectProps {
   disabled?: boolean;
   id?: string;
   options: any;
+  //value: any;
+  setValue: Function;
   hint?: string;
+  isMulti?: boolean;
 }
-
 
 export const Select: FC<SelectProps> = ({
   //id,
@@ -25,6 +26,8 @@ export const Select: FC<SelectProps> = ({
   //style,
   //className,
   options,
+  setValue,
+  //isMulti,
   //hint,
   //full,
   //disabled,
@@ -50,9 +53,9 @@ export const Select: FC<SelectProps> = ({
     <div>
       <h1 className="font-medium text-black">Label</h1>
       {/*{hint ? <p>hint</p> : null}*/}
-    <p className="mt-1 font-normal text-gray-500">Hint is optional</p>
+      <p className="mt-1 font-normal text-gray-500">Hint is optional</p>
 
-      <SelectComponent options={options} />
+      <SelectComponent options={options} isMulti={true} setValue={setValue} />
 
       {/*<SelectLib
         className={

@@ -1,7 +1,7 @@
 import 'react-app-polyfill/ie11';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { IconButton, Select, Button } from '../';
+import { Select } from '../';
 
 const options = [
   { value: 'chocolate', label: 'Chocolate' },
@@ -10,22 +10,21 @@ const options = [
 ];
 
 const App = () => {
+  const [value, setValue] = React.useState('');
+
+  React.useEffect(() => {
+    console.log("klasdjdlaskjdaskljdsakljklasddaskl " + value);
+
+  }, [value]);
+
   return (
     <div style={{ padding: 100 }}>
-      {/*<h1>Icon Button</h1>
-      Testing:
-      <IconButton iconName="delete" />*/}
-
-
-      <Select options={options}/>
-
-
-{/*<input type="text" name="city" list="citynames" />
-<datalist id="citynames">
-  <option value="Boston"/>
-  <option value="Cambridge"/>
-</datalist>*/}
-      {/*<Button type={'tertiary'} >dsakdsal</Button>*/}
+      <Select
+        options={options}
+        isMulti={true}
+        value={value}
+        setValue={setValue}
+      />
     </div>
   );
 };
