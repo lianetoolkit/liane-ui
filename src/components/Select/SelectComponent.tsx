@@ -257,6 +257,8 @@ export const SelectComponent: FC<SelectComponentProps> = ({
                 </div>
               );
             })()
+          ) : !isMulti ? (
+            ''
           ) : (
             <div className={disabled ? 'text-gray-400' : ''}>Select...</div>
           )}

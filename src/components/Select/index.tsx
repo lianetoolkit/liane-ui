@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import SelectLib from 'react-select';
 
 import { SelectComponent } from './SelectComponent';
 
@@ -12,8 +11,8 @@ export interface SelectProps {
   full?: boolean;
   disabled?: boolean;
   id?: string;
-  options: any;
-  value: any;
+  options: Array<Object>;
+  value: string | Array<Object>;
   setValue: Function;
   hint?: string;
   isMulti?: boolean;
@@ -47,7 +46,6 @@ export const Select: FC<SelectProps> = ({
   return (
     <div>
       <h1 className={classLabel[disabled ? 'disabled' : 'normal']}>Label</h1>
-      {/*{hint ? <p>hint</p> : null}*/}
       {hint ? (
         <p className={classHint[disabled ? 'disabled' : 'normal']}>{hint}</p>
       ) : null}
@@ -59,23 +57,6 @@ export const Select: FC<SelectProps> = ({
         setValue={setValue}
         disabled={disabled}
       />
-
-      {/*<SelectLib
-        className={
-          className +
-          'mt-1 text-black font-normal border-gray hover:border-black focus:border-black'
-        }
-        classNamePrefix="select"
-        options={options}
-        isClearable={true}
-        //isMulti={true}
-        //isDisabled={true}
-        components={{
-          IndicatorSeparator: () => null,
-          DropdownIndicator: () => <ArrowDown />,
-          //ClearIndicator: () => <ClearIndicator />,
-        }}
-      />*/}
     </div>
   );
 };
