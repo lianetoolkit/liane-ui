@@ -11,3 +11,5 @@ export * from './components/Link';
 export * from './components/IconButton';
 // Tag
 export * from './components/Tag';
+// Tooltip
+export * from './components/Tooltip';
