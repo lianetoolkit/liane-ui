@@ -16,6 +16,7 @@ export interface SelectProps {
   setValue: Function;
   hint?: string;
   isMulti?: boolean;
+  placeholder?: string;
 }
 
 export const Select: FC<SelectProps> = ({
@@ -30,6 +31,7 @@ export const Select: FC<SelectProps> = ({
   disabled,
   isMulti,
   hint,
+  placeholder
 }) => {
   //const classSizes =
   //size === 'compact' ? 'py-1.5 px-3 text-sm' : 'py-3 px-6 text-base';
@@ -56,6 +58,7 @@ export const Select: FC<SelectProps> = ({
         value={value}
         setValue={setValue}
         disabled={disabled}
+        placeholder={placeholder}
       />
     </div>
   );

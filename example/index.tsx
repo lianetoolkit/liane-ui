@@ -12,10 +12,6 @@ const options = [
 const App = () => {
   const [value, setValue] = React.useState('');
 
-  React.useEffect(() => {
-    console.log('klasdjdlaskjdaskljdsakljklasddaskl ' + value);
-  }, [value]);
-
   return (
     <div style={{ padding: 100 }}>
       <Select

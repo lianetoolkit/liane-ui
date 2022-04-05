@@ -146,6 +146,7 @@ interface SelectComponentProps {
   value: any;
   setValue: Function;
   isMulti?: boolean;
+  placeholder?: string;
 }
 
 export const SelectComponent: FC<SelectComponentProps> = ({
@@ -159,6 +160,7 @@ export const SelectComponent: FC<SelectComponentProps> = ({
   setValue,
   isMulti,
   disabled,
+  placeholder
 }) => {
   //const classSizes =
   //size === 'compact' ? 'py-1.5 px-3 text-sm' : 'py-3 px-6 text-base';
@@ -241,7 +243,7 @@ export const SelectComponent: FC<SelectComponentProps> = ({
                 background: disabled ? '#F5F5F5' : '',
                 cursor: disabled ? 'not-allowed' : 'auto',
               }}
-              placeholder="Select..."
+              placeholder={placeholder ? placeholder : 'Select...'}
               disabled={disabled}
             />
           ) : (
@@ -281,7 +283,7 @@ export const SelectComponent: FC<SelectComponentProps> = ({
           ) : !isMulti ? (
             ''
           ) : (
-            <div className={disabled ? 'text-gray-400' : ''}>Select...</div>
+            <div className={disabled ? 'text-gray-400' : ''}>{placeholder ? placeholder : 'Select...'}</div>
           )}
         </div>
         <div className="flex flex-row">
