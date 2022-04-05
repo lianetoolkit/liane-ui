@@ -1,4 +1,4 @@
-import React, { FC, MouseEventHandler, useState, useEffect } from 'react';
+import React, { FC, MouseEventHandler, useState, useEffect, useRef } from 'react';
 
 import CheckBox from './CheckBox';
 
@@ -120,6 +120,21 @@ type Option = {
 }*/
 }
 
+
+function useOutsideHandleDisableActive(ref: any, setActive: Function) {
+  useEffect(() => {
+    function handleClickOutside(event: any) {
+      if (ref.current && !ref.current.contains(event.target)) {
+        setActive(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [ref]);
+}
+
 interface SelectComponentProps {
   size?: 'comfortable' | 'compact';
   style?: any;
@@ -155,6 +170,10 @@ export const SelectComponent: FC<SelectComponentProps> = ({
   const [optionsQuery, setOptionsQuery] = useState(new Array());
   const [selecteds, setSelecteds] = useState<Set<Option>>(new Set());
 
+
+  const wrapperRef = useRef(null);
+  useOutsideHandleDisableActive(wrapperRef, setActive);
+
   useEffect(() => {
     setOptionsQuery(options);
     console.log(disabled);
@@ -181,6 +200,7 @@ export const SelectComponent: FC<SelectComponentProps> = ({
 
   return (
     <div
+      ref={wrapperRef}
       className={
         disabled
           ? 'relative inline-block cursor-not-allowed bg-gray-100'
