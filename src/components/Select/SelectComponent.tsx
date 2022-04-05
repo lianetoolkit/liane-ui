@@ -246,6 +246,7 @@ export const SelectComponent: FC<SelectComponentProps> = ({
                         onClick={() => {
                           selecteds.delete(select);
                           setSelecteds(selecteds);
+                          //setActive(!active);
                           setValue(selecteds);
                         }}
                       >
@@ -296,6 +297,7 @@ export const SelectComponent: FC<SelectComponentProps> = ({
                 <button
                   onClick={() => {
                     setSelected(option);
+                    setActive(!active);
                     setValue(option);
                     setQuery(option.label);
                   }}
