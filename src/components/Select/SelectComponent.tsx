@@ -1,4 +1,10 @@
-import React, { FC, MouseEventHandler, useState, useEffect, useRef } from 'react';
+import React, {
+  FC,
+  MouseEventHandler,
+  useState,
+  useEffect,
+  useRef,
+} from 'react';
 
 import CheckBox from './CheckBox';
 
@@ -120,7 +126,6 @@ type Option = {
 }*/
 }
 
-
 function useOutsideHandleDisableActive(ref: any, setActive: Function) {
   useEffect(() => {
     function handleClickOutside(event: any) {
@@ -160,7 +165,7 @@ export const SelectComponent: FC<SelectComponentProps> = ({
   setValue,
   isMulti,
   disabled,
-  placeholder
+  placeholder,
 }) => {
   //const classSizes =
   //size === 'compact' ? 'py-1.5 px-3 text-sm' : 'py-3 px-6 text-base';
@@ -169,16 +174,14 @@ export const SelectComponent: FC<SelectComponentProps> = ({
   const [selected, setSelected] = useState(Object);
   const [focus, setFocus] = useState(false);
   const [query, setQuery] = useState('');
-  const [optionsQuery, setOptionsQuery] = useState(new Array());
+  const [optionsQuery, setOptionsQuery] = useState(Object);
   const [selecteds, setSelecteds] = useState<Set<Option>>(new Set());
-
 
   const wrapperRef = useRef(null);
   useOutsideHandleDisableActive(wrapperRef, setActive);
 
   useEffect(() => {
     setOptionsQuery(options);
-    console.log(disabled);
   }, []);
 
   useEffect(() => {
@@ -283,7 +286,9 @@ export const SelectComponent: FC<SelectComponentProps> = ({
           ) : !isMulti ? (
             ''
           ) : (
-            <div className={disabled ? 'text-gray-400' : ''}>{placeholder ? placeholder : 'Select...'}</div>
+            <div className={disabled ? 'text-gray-400' : ''}>
+              {placeholder ? placeholder : 'Select...'}
+            </div>
           )}
         </div>
         <div className="flex flex-row">
@@ -323,7 +328,7 @@ export const SelectComponent: FC<SelectComponentProps> = ({
                     setValue(option);
                     setQuery(option.label);
                   }}
-                  className="flex flex-row justify-between block w-full px-4 py-2 text-base text-left text-gray-700 hover:bg-gray-50"
+                  className="flex flex-row justify-between w-full px-4 py-2 text-base text-left text-gray-700 hover:bg-gray-50"
                 >
                   {option.label}
                   {selected.value === option.value ? <CheckedIndicator /> : ''}
@@ -357,7 +362,7 @@ export const SelectComponent: FC<SelectComponentProps> = ({
                       setValue(selecteds);
                     }
                   }}
-                  className="flex flex-row items-center block w-full px-4 py-2 text-base text-left text-gray-700 hover:bg-gray-50"
+                  className="flex flex-row items-center w-full px-4 py-2 text-base text-left text-gray-700 hover:bg-gray-50"
                 >
                   <CheckBox checked={selecteds.has(option)} />
                   <p className="ml-2 text-sm text-black">{option.label}</p>

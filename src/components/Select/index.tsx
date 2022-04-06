@@ -31,7 +31,7 @@ export const Select: FC<SelectProps> = ({
   disabled,
   isMulti,
   hint,
-  placeholder
+  placeholder,
 }) => {
   //const classSizes =
   //size === 'compact' ? 'py-1.5 px-3 text-sm' : 'py-3 px-6 text-base';
