@@ -11,3 +11,7 @@ export * from './components/Link';
 export * from './components/IconButton';
 // Select
 export * from './components/Select';
+// Tag
+export * from './components/Tag';
+// Tooltip
+export * from './components/Tooltip';

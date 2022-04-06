@@ -3,9 +3,40 @@
 @tailwind utilities;
 
 .liu-btn-switch button {
-    @apply border-gray-200 font-medium;
+  @apply border-gray-200 font-medium;
 }
 
 .liu-btn-switch button.disabled {
-    @apply bg-gray-100 text-gray-400 cursor-default;
+  @apply bg-gray-100 text-gray-400 cursor-default;
 }
+
+/* Tooltip Start */
+.liu-tooltip {
+  @apply relative inline-block cursor-pointer;
+}
+.liu-tooltip .liu-tooltip-container {
+  @apply absolute text-center w-full z-10;
+}
+.liu-tooltip .liu-tooltip-text {
+  background: rgba(0, 0, 0, 0.8);
+  @apply rounded-md opacity-0 py-1 px-2 text-xs text-white transition ease-in-out mx-auto inline-block;
+}
+.liu-tooltip:hover .liu-tooltip-text {
+  @apply opacity-100;
+}
+.liu-tooltip.liu-tooltip-top .liu-tooltip-container {
+  top: -22px;
+}
+.liu-tooltip.liu-tooltip-bottom .liu-tooltip-container {
+  bottom: -22px;
+}
+.liu-tooltip.liu-tooltip-left .liu-tooltip-container {
+  left: -100%;
+  @apply text-right pr-2;
+}
+.liu-tooltip.liu-tooltip-right .liu-tooltip-container {
+  right: -100%;
+  @apply text-left pl-2;
+}
+
+/* Tooltip End */
