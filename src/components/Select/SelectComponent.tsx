@@ -40,14 +40,19 @@ const ArrowDown: FC<ArrowDownProps> = ({ className, rotate, disabled }) => {
 interface ClearIndicatorProps {
   className?: string;
   onClick: MouseEventHandler;
+  size?: 'comfortable' | 'compact';
 }
 
-const ClearIndicator: FC<ClearIndicatorProps> = ({ className, onClick }) => {
+const ClearIndicator: FC<ClearIndicatorProps> = ({
+  className,
+  onClick,
+  size,
+}) => {
   return (
     <div className={className + ' w-6'} onClick={onClick}>
       <svg
-        width="24"
-        height="24"
+        width={size === 'compact' ? '16' : '24'}
+        height={size === 'compact' ? '16' : '24'}
         viewBox="0 0 24 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -157,7 +162,7 @@ interface SelectComponentProps {
 export const SelectComponent: FC<SelectComponentProps> = ({
   //id,
   //children,
-  //size,
+  size,
   //style,
   //className,
   options,
@@ -182,6 +187,7 @@ export const SelectComponent: FC<SelectComponentProps> = ({
 
   useEffect(() => {
     setOptionsQuery(options);
+    console.log(size);
   }, []);
 
   useEffect(() => {
@@ -196,7 +202,6 @@ export const SelectComponent: FC<SelectComponentProps> = ({
 
   useEffect(() => {
     setValue(selecteds);
-    console.log('value: ' + value);
   }, [selecteds]);
 
   useEffect(() => {
@@ -222,11 +227,13 @@ export const SelectComponent: FC<SelectComponentProps> = ({
         onClick={() => {
           disabled ? '' : setActive(!active);
         }}
-        className={
-          disabled
-            ? 'flex flex-row justify-between h-12 px-4 py-3 border rounded w-72 border-gray cursor-not-allowed'
-            : 'flex flex-row justify-between h-12 px-4 py-3 border rounded w-72 border-gray'
+        className={`
+        flex flex-row justify-between border rounded border-gray items-center ${
+          size === 'compact'
+            ? 'w-60 h-8 px-3 py-1.5 text-sm'
+            : ' w-72 h-12 px-4 py-3'
         }
+          ${disabled ? ' cursor-not-allowed' : ' '}`}
       >
         <div
           className="font-normal"
@@ -241,7 +248,7 @@ export const SelectComponent: FC<SelectComponentProps> = ({
               type="text"
               value={query}
               onChange={({ target }) => setQuery(target.value)}
-              className="absolute h-10 outline-none w-44 top-1 focus-within:no-underline"
+              className="outline-none w-36 focus-within:no-underline"
               style={{
                 background: disabled ? '#F5F5F5' : '',
                 cursor: disabled ? 'not-allowed' : 'auto',
@@ -259,7 +266,7 @@ export const SelectComponent: FC<SelectComponentProps> = ({
               console.log(value);
 
               return (
-                <div className="absolute flex flex-row items-center h-10 top-1">
+                <div className="flex flex-row items-center">
                   {selects.map((select) => {
                     return (
                       <div
@@ -291,7 +298,7 @@ export const SelectComponent: FC<SelectComponentProps> = ({
             </div>
           )}
         </div>
-        <div className="flex flex-row">
+        <div className="flex flex-row items-center">
           {focus && selected !== '' && !isMulti && !disabled ? (
             <ClearIndicator
               onClick={() => {
@@ -300,6 +307,7 @@ export const SelectComponent: FC<SelectComponentProps> = ({
                 setQuery('');
               }}
               className="mr-4"
+              size={size}
             />
           ) : null}
           <ArrowDown
@@ -312,7 +320,9 @@ export const SelectComponent: FC<SelectComponentProps> = ({
 
       {active && !isMulti && !disabled ? (
         <div
-          className="absolute right-0 py-4 bg-white rounded w-72 origin-top-right ring-1 ring-black ring-opacity-5 focus:outline-none"
+          className={`
+          ${size === 'comfortable' ? 'w-72 py-4 ' : 'w-60 py-1.5 text-sm'}
+        'absolute right-0 bg-white rounded origin-top-right ring-1 ring-black ring-opacity-5 focus:outline-none'`}
           style={{
             boxShadow:
               '0px 0px 2px rgba(0, 0, 0, 0.24), 0px 2px 4px rgba(0, 0, 0, 0.16)',
@@ -328,7 +338,7 @@ export const SelectComponent: FC<SelectComponentProps> = ({
                     setValue(option);
                     setQuery(option.label);
                   }}
-                  className="flex flex-row justify-between w-full px-4 py-2 text-base text-left text-gray-700 hover:bg-gray-50"
+                  className={`${size === 'comfortable' ? 'text-base': 'text-sm h-8'} flex flex-row justify-between w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-50`}
                 >
                   {option.label}
                   {selected.value === option.value ? <CheckedIndicator /> : ''}
@@ -341,7 +351,9 @@ export const SelectComponent: FC<SelectComponentProps> = ({
 
       {active && isMulti && !disabled ? (
         <div
-          className="absolute right-0 py-4 bg-white rounded w-72 origin-top-right ring-1 ring-black ring-opacity-5 focus:outline-none"
+
+          
+          className={`${size === 'comfortable' ? 'w-72 py-4 ' : 'w-60 py-1.5 text-sm'} absolute right-0 bg-white rounded origin-top-right ring-1 ring-black ring-opacity-5 focus:outline-none`}
           style={{
             boxShadow:
               '0px 0px 2px rgba(0, 0, 0, 0.24), 0px 2px 4px rgba(0, 0, 0, 0.16)',
@@ -362,7 +374,7 @@ export const SelectComponent: FC<SelectComponentProps> = ({
                       setValue(selecteds);
                     }
                   }}
-                  className="flex flex-row items-center w-full px-4 py-2 text-base text-left text-gray-700 hover:bg-gray-50"
+                  className="flex flex-row items-center w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-50"
                 >
                   <CheckBox checked={selecteds.has(option)} />
                   <p className="ml-2 text-sm text-black">{option.label}</p>

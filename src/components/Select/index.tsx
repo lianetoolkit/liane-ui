@@ -22,7 +22,7 @@ export interface SelectProps {
 export const Select: FC<SelectProps> = ({
   //id,
   //children,
-  //size,
+  size,
   //style,
   //className,
   options,
@@ -33,8 +33,8 @@ export const Select: FC<SelectProps> = ({
   hint,
   placeholder,
 }) => {
-  //const classSizes =
-  //size === 'compact' ? 'py-1.5 px-3 text-sm' : 'py-3 px-6 text-base';
+  const classSizes =
+    size === 'compact' ? 'py-1.5 px-3 text-sm' : 'py-3 px-6 text-base';
   const classLabel = {
     normal: 'font-medium text-black',
     disabled: 'font-medium text-gray-400',
@@ -47,9 +47,21 @@ export const Select: FC<SelectProps> = ({
 
   return (
     <div>
-      <h1 className={classLabel[disabled ? 'disabled' : 'normal']}>Label</h1>
+      <h1
+        className={`${size === 'compact' ? 'text-sm ' : ' '} ${
+          classLabel[disabled ? 'disabled' : 'normal']
+        }`}
+      >
+        Label
+      </h1>
       {hint ? (
-        <p className={classHint[disabled ? 'disabled' : 'normal']}>{hint}</p>
+        <p
+          className={`${size === 'compact' ? 'text-sm' : ''} ${
+            classHint[disabled ? 'disabled' : 'normal']
+          }`}
+        >
+          {hint}
+        </p>
       ) : null}
 
       <SelectComponent
@@ -59,6 +71,7 @@ export const Select: FC<SelectProps> = ({
         setValue={setValue}
         disabled={disabled}
         placeholder={placeholder}
+        size={size}
       />
     </div>
   );
