@@ -75,6 +75,7 @@ const colors = {
   white: '#fff',
   // gray: TWColors.neutral,
   grey: {
+    50: '#F5F5F5',
     100: '#E0E0E0',
     200: '#BDBDBD',
     300: '#757575',

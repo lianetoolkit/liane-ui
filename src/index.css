@@ -54,8 +54,18 @@
   @apply text-base font-medium;
 }
 .text-input-block .group-input .input-addon {
-  @apply px-3;
+  @apply px-3 flex items-center;
 }
+.text-input-block .group-input .input-addon.right-addon {
+  @apply pl-0;
+}
+.text-input-block .group-input .input-addon.inner-label {
+  @apply bg-grey-50 text-sm;
+}
+.text-input-block .group-input .input-addon.left-addon {
+  @apply pr-0;
+}
+
 .text-input-block .group-input {
   @apply border border-grey-100 rounded-md flex flex-row overflow-hidden;
 }
@@ -63,6 +73,12 @@
 .text-input-block .group-input .inner-input-box:hover {
   outline: 0;
   border: 0;
+}
+.text-input-block.text-input-disabled .group-input .material-icons {
+  @apply text-grey-200 bg-grey-50;
+}
+.text-input-block .group-input .material-icons {
+  @apply text-grey-800;
 }
 .text-input-block .group-input .inner-input-box {
   @apply p-3 text-grey-800 text-base w-full;
@@ -73,11 +89,17 @@
 .text-input-block .input-box::placeholder {
   @apply text-grey-200;
 }
+
 .input-textarea {
   @apply h-36;
 }
-.text-input-block .input-box:disabled {
-  @apply text-grey-200;
+
+.text-input-disabled.text-input-block .input-addon {
+  @apply bg-grey-50;
+}
+.text-input-block .input-box:disabled,
+.text-input-block .inner-input-box:disabled {
+  @apply text-grey-200 bg-grey-50;
 }
 .text-input-block .group-input:hover,
 .text-input-block .group-input:focus-within,
@@ -94,6 +116,7 @@
 .text-input-block .input-help {
   @apply text-base text-grey-400;
 }
+
 .text-input-disabled.text-input-block .text-input-label,
 .text-input-disabled.text-input-block .input-help {
   @apply text-grey-200;

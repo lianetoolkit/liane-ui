@@ -1,4 +1,6 @@
 import React, { FC, ReactChild, useState } from 'react';
+import Icon from '@material-ui/core/Icon';
+
 export interface TextInputProps {
     size?: 'comfortable' | 'compact';
     type?: 'text' | 'password' | 'textarea'
@@ -7,17 +9,15 @@ export interface TextInputProps {
     help?: string,
     placeholder?: string,
     icon?: string,
+    trailIcon?: boolean;
     labelLeading?: string,
     labelTrailing?: string,
     buttonTrailing?: ReactChild,
-    trailIcon?: boolean;
-    style?: any;
     className?: any;
-    full?: boolean;
     disabled?: boolean;
     id?: string;
-    onClick?: Function;
     onChange?: Function;
+    onFocus?: Function;
     classNameWrapper?: string;
 }
 
@@ -31,16 +31,12 @@ export const TextInput: FC<TextInputProps> = ({
     labelLeading,
     labelTrailing,
     buttonTrailing,
-    // size,
-    // style,
     name,
     className,
-    // full,
-    // onClick,
+    trailIcon,
     classNameWrapper,
     disabled,
 }) => {
-    // const classSizes =
     const [showPassword, setShowPassword] = useState(false);
     const ret = (() => {
         switch (type) {
@@ -48,23 +44,23 @@ export const TextInput: FC<TextInputProps> = ({
             case 'password': {
                 return <div className='group-input'>
                     <input name={name} type={showPassword ? `text` : `password`} placeholder={placeholder ?? ``} className={`inner-input-box ${className ?? ``}`} disabled={disabled ?? false} id={id} />
-                    <button className='left-addon input-addon' onClick={() => setShowPassword(!showPassword)}>{!showPassword ? `🙈` : `🙉`}</button>
+                    <button className='right-addon input-addon' onClick={() => setShowPassword(!showPassword)}>{!showPassword ? `🙈` : `🙉`}</button>
                 </div>
-
             }
-            default: return <input name={name} type={type ?? 'text'} placeholder={placeholder ?? ``} className={`input-box ${className ?? ``}`} disabled={disabled ?? false} id={id} />
+            default: return <input name={name} type={type} placeholder={placeholder ?? ``} className={`inner-input-box ${className ?? ``}`} disabled={disabled ?? false} id={id} />
         }
-
-
     })();
-
     return (
         <div className={`text-input-block ${classNameWrapper ?? ``} ${disabled ? `text-input-disabled` : ``}`}>
             <label>
                 <span className='text-input-label'>{label}</span>
                 {help && <span className='input-help'>{help}</span>}
                 {(icon || labelLeading || labelTrailing || buttonTrailing) ? <div className='group-input'>
+                    {icon && !trailIcon && <span className='input-addon left-addon'><Icon>{icon}</Icon></span>}
+                    {labelLeading && <span className='input-addon inner-label '>{labelLeading}</span>}
                     {ret}
+                    {icon && trailIcon && <span className='input-addon right-addon'><Icon>{icon}</Icon></span>}
+                    {labelTrailing && <span className='input-addon inner-label'>{labelTrailing}</span>}
                 </div> : ret}
 
             </label>
