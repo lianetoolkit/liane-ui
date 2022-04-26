@@ -53,15 +53,34 @@
 .text-input-block .text-input-label {
   @apply text-base font-medium;
 }
+.text-input-block .group-input .input-addon {
+  @apply px-3;
+}
+.text-input-block .group-input {
+  @apply border border-grey-100 rounded-md flex flex-row overflow-hidden;
+}
+.text-input-block .group-input .inner-input-box:focus,
+.text-input-block .group-input .inner-input-box:hover {
+  outline: 0;
+  border: 0;
+}
+.text-input-block .group-input .inner-input-box {
+  @apply p-3 text-grey-800 text-base w-full;
+}
 .text-input-block .input-box {
   @apply border border-grey-100 p-3 text-grey-800 text-base rounded-md ring-0 ring-offset-0 ring-grey-800 ring-offset-grey-800;
 }
 .text-input-block .input-box::placeholder {
   @apply text-grey-200;
 }
-.text-input-block:disabled {
+.input-textarea {
+  @apply h-36;
+}
+.text-input-block .input-box:disabled {
   @apply text-grey-200;
 }
+.text-input-block .group-input:hover,
+.text-input-block .group-input:focus-within,
 .text-input-block:hover,
 .text-input-block:focus {
   @apply border-grey-800 ring-0 ring-offset-0;

@@ -31,6 +31,7 @@ Default.args = {
     label: 'Full Name',
     help: 'As printed in your ID',
     placeholder: 'John Doe',
+    type: "password"
 
 };
 // Clickable.args = {
