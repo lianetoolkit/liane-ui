@@ -1,14 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-.liu-btn-switch button {
-  @apply border-gray-200 font-medium;
+* {
+  @apply font-sans;
+}
+/* .liu-btn-switch button {
+  @apply border-neutral-100 font-medium;
 }
 
 .liu-btn-switch button.disabled {
-  @apply bg-gray-100 text-gray-400 cursor-default;
-}
+  @apply bg-neutral-100 text-neutral-400 cursor-default;
+} */
 
 /* Tooltip Start */
 .liu-tooltip {
@@ -40,3 +42,41 @@
 }
 
 /* Tooltip End */
+
+/* Input Text start  */
+.text-input-block {
+  /* @apply ; */
+}
+.text-input-block label {
+  @apply flex flex-col space-y-1 max-w-xs w-full;
+}
+.text-input-block .text-input-label {
+  @apply text-base font-medium;
+}
+.text-input-block .input-box {
+  @apply border border-grey-100 p-3 text-grey-800 text-base rounded-md ring-0 ring-offset-0 ring-grey-800 ring-offset-grey-800;
+}
+.text-input-block .input-box::placeholder {
+  @apply text-grey-200;
+}
+.text-input-block:disabled {
+  @apply text-grey-200;
+}
+.text-input-block:hover,
+.text-input-block:focus {
+  @apply border-grey-800 ring-0 ring-offset-0;
+  outline: 0;
+  box-shadow: none;
+}
+.text-input-block:focus-visible {
+  outline: 0;
+}
+
+.text-input-block .input-help {
+  @apply text-base text-grey-400;
+}
+.text-input-disabled.text-input-block .text-input-label,
+.text-input-disabled.text-input-block .input-help {
+  @apply text-grey-200;
+}
+/* Input Text end   */
