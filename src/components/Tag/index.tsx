@@ -4,12 +4,12 @@ import Icon from '@material-ui/core/Icon';
 export interface TagProps {
   children?: ReactChild;
   color?:
-  | 'purple'
-  | 'green'
-  | 'red'
-  | 'lightPurple'
-  | 'lightGreen'
-  | 'lightRed';
+    | 'purple'
+    | 'green'
+    | 'red'
+    | 'lightPurple'
+    | 'lightGreen'
+    | 'lightRed';
   style?: any;
   iconName?: string;
   className?: string;
@@ -37,8 +37,9 @@ export const Tag: FC<TagProps> = ({
   let tagBg = '';
   let tagBorder = '';
 
-  let classes = `${className ?? ``
-    }  ${sizeClass}  inline-block rounded-full px-3 py-2  border `;
+  let classes = `${
+    className ?? ``
+  }  ${sizeClass}  inline-block rounded-full px-3 py-2  border `;
 
   if (disabled) {
     tagColor = 'text-gray-400';

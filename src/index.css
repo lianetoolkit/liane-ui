@@ -83,10 +83,21 @@
 .text-input-block .group-input .inner-input-box {
   @apply p-3 text-grey-800 text-base w-full;
 }
-.text-input-block .input-box {
-  @apply border border-grey-100 p-3 text-grey-800 text-base rounded-md ring-0 ring-offset-0 ring-grey-800 ring-offset-grey-800;
+.text-input-block.input-comfortable .input-box,
+.text-input-block.input-comfortable .inner-input-box {
+  @apply p-3 text-grey-800 text-base;
 }
-.text-input-block .input-box::placeholder {
+.text-input-block.input-compact .input-box,
+.text-input-block.input-compact .inner-input-box,
+.text-input-block.input-compact .PhoneInputInput {
+  @apply py-1.5 px-3 text-grey-800 text-sm;
+}
+
+.text-input-block .input-box {
+  @apply border border-grey-100  rounded-md ring-0 ring-offset-0 ring-grey-800 ring-offset-grey-800;
+}
+.text-input-block .input-box::placeholder,
+.text-input-block .inner-input-box::placeholder {
   @apply text-grey-200;
 }
 
@@ -103,8 +114,12 @@
 }
 .text-input-block .group-input:hover,
 .text-input-block .group-input:focus-within,
-.text-input-block:hover,
-.text-input-block:focus {
+.text-input-block .input-box:focus,
+.text-input-block .input-box:hover,
+.PhoneInputInput:hover,
+.PhoneInputInput:focus,
+.input-textarea:hover,
+.input-textarea:focus {
   @apply border-grey-800 ring-0 ring-offset-0;
   outline: 0;
   box-shadow: none;
@@ -120,5 +135,40 @@
 .text-input-disabled.text-input-block .text-input-label,
 .text-input-disabled.text-input-block .input-help {
   @apply text-grey-200;
+}
+.PhoneInput {
+  @apply flex flex-row w-full;
+}
+.text-input-block .PhoneInputCountry {
+  @apply bg-grey-50 text-sm flex items-center px-2 relative overflow-hidden;
+  width: 60px;
+}
+
+.PhoneInputCountryIcon {
+  width: 24px;
+}
+.PhoneInputInput {
+  @apply p-3 text-grey-800 text-base w-full;
+}
+.PhoneInputCountrySelect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  border: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.PhoneInputCountrySelectArrow {
+  @apply border-grey-800;
+  border: solid black;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 3px;
+  margin-left: 5px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
 }
 /* Input Text end   */

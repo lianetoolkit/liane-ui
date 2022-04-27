@@ -28,6 +28,7 @@ export const Default = Template.bind({});
 export const Password = Template.bind({});
 export const withIcon = Template.bind({});
 export const innerLabel = Template.bind({});
+export const Telephone = Template.bind({});
 
 Default.args = {
     label: 'Full Name',
@@ -56,18 +57,11 @@ innerLabel.args = {
     labelLeading: 'http://',
     labelTrailing: '.ar'
 }
-// Clickable.args = {
-//     children: 'Delete',
-//     iconName: 'delete',
-//     onClose: null,
-//     onClick: () => {
-//         alert('hey');
-//     },
-// };
-// Close.args = {
-//     children: 'Close me',
-//     onClick: null,
-//     onClose: () => {
-//         alert('bye ');
-//     },
-// };
+Telephone.args = {
+    label: 'Telephone',
+    help: 'stop calling',
+    defaultCountry: 'BR',
+    placeholder: '+55 555 555 555',
+    type: "tel"
+};
+
