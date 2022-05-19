@@ -1,11 +1,12 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import { Tab, TabProps } from '../src/components/Tab';
+import { Tab } from '../src/components/Tab';
+import { Tabs, TabsProps } from '../src/components/Tabs';
 import '../src/index.css';
 
 const meta: Meta = {
-  title: 'Tab',
-  component: Tab,
+  title: 'Tabs',
+  component: Tabs,
   argTypes: {
     children: {
       control: {
@@ -20,13 +21,18 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story<TabProps> = (args) => <Tab {...args} />;
+const Template: Story<TabsProps> = (args) => <Tabs {...args} />;
 
 // By passing using the Args format for exported stories, you can control the props for a component for reuse in a test
 // https://storybook.js.org/docs/react/workflows/unit-testing
 export const Default = Template.bind({});
 Default.args = {
-  children: 'Tab 1',
-  index: 0,
-  onClick: null,
+  value: 1,
+  children: [
+    <Tab index={0}>Tab 1</Tab>,
+    <Tab index={1}>Tab 2</Tab>,
+    <Tab index={2}>Tab 3</Tab>,
+    <Tab index={3}>Tab 4</Tab>,
+  ],
+  onChange: null,
 };

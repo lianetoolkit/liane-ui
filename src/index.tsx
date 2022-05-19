@@ -13,6 +13,8 @@ export * from './components/IconButton';
 export * from './components/Tag';
 // Tab
 export * from './components/Tab';
+// Tabs
+export * from './components/Tabs';
 
 // Tooltip
 export * from './components/Tooltip';

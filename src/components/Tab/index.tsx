@@ -1,12 +1,13 @@
-import React, { FC, ReactChild } from 'react';
+import React, { FC, ReactChild, JSXElementConstructor } from 'react';
 import Icon from '@material-ui/core/Icon';
-
+import { useTabs } from '../Tabs';
 export interface TabProps {
   children?: ReactChild;
   style?: any;
+  index: number;
   iconName?: string;
   className?: string;
-  active?: boolean;
+  active?: boolean | string | JSXElementConstructor<any>;
   disabled?: boolean;
   id?: string;
   onClick?: Function;
@@ -21,7 +22,11 @@ export const Tab: FC<TabProps> = ({
   onClick,
   disabled,
   active,
+  index,
 }) => {
+  const context = useTabs();
+  console.log('context', context);
+  let isActive = active ?? context.value === index;
   let sizeClass = 'text-base';
   let tabColor = 'text-purple font-medium';
   let tabBg = 'bg-transparent hover:purpleLight focus:bg-purpleLight-75';
@@ -29,7 +34,7 @@ export const Tab: FC<TabProps> = ({
   let classes = `${
     className ?? ``
   }  ${sizeClass}  inline-block rounded-full px-4 py-2`;
-  if (active) {
+  if (isActive) {
     tabBg = 'bg-purpleLight-50 hover:purpleLight focus:bg-purpleLight-75';
   }
 
@@ -46,6 +51,7 @@ export const Tab: FC<TabProps> = ({
       id={id}
       onClick={(ev) => {
         if (onClick && !disabled) onClick(ev);
+        if (context.onChange) context.onChange(index);
       }}
       style={style ?? {}}
     >
