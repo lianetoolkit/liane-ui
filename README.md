@@ -6,6 +6,10 @@ Design system for Liane
 
 UI Design placed in https://www.figma.com/file/8KXcNUwilQGGHrUmnb9dCV/Liane-Design-System?node-id=728%3A291
 
+# Icons Available
+
+All the icon names are listed on https://fonts.google.com/icons?selected=Material+Icons
+
 ## Tech
 
 We use TSdx

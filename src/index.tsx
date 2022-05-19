@@ -13,3 +13,5 @@ export * from './components/IconButton';
 export * from './components/Tag';
 // Tooltip
 export * from './components/Tooltip';
+// Text Input
+export * from './components/TextInput';

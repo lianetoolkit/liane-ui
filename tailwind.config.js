@@ -73,22 +73,29 @@ const colors = {
   },
   black: '#000',
   white: '#fff',
-  gray: TWColors.trueGray,
-  darkGray: '#757575',
-  darkerGray: '#212121',
+  // gray: TWColors.neutral,
+  grey: {
+    50: '#F5F5F5',
+    100: '#E0E0E0',
+    200: '#BDBDBD',
+    300: '#757575',
+    400: '#757575',
+    800: '#212121',
+  },
+  neutral: TWColors.neutral,
 };
 
 module.exports = {
   purge: ['./src/**/*.tsx', './src/**/*.jsx'],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    colors: {
-      ...colors,
-      primary: colors.purple['500'],
-      secondary: colors.orange['500'],
-      tertiary: colors.yellow['500'],
-    },
     extend: {
+      colors: {
+        ...colors,
+        primary: colors.purple['500'],
+        secondary: colors.orange['500'],
+        tertiary: colors.yellow['500'],
+      },
       fontFamily: {
         sans: ['Roboto', 'Helvetica', 'Arial', 'sans-serif'],
       },

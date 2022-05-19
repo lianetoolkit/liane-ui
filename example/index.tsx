@@ -1,7 +1,7 @@
 import 'react-app-polyfill/ie11';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { IconButton } from '../';
+import { TextInput } from '../';
 import { Tooltip } from '../';
 
 const App = () => {
@@ -27,6 +27,7 @@ const App = () => {
       <Tooltip title="Wow to the right" placement="right">
         Tooltip on the Right
       </Tooltip>
+      <TextInput name="name" placeholder="Your name" label="name" />
     </div>
   );
 };

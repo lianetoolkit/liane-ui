@@ -1,14 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-.liu-btn-switch button {
-  @apply border-gray-200 font-medium;
+* {
+  @apply font-sans;
+}
+/* .liu-btn-switch button {
+  @apply border-neutral-100 font-medium;
 }
 
 .liu-btn-switch button.disabled {
-  @apply bg-gray-100 text-gray-400 cursor-default;
-}
+  @apply bg-neutral-100 text-neutral-400 cursor-default;
+} */
 
 /* Tooltip Start */
 .liu-tooltip {
@@ -40,3 +42,133 @@
 }
 
 /* Tooltip End */
+
+/* Input Text start  */
+.text-input-block {
+  /* @apply ; */
+}
+.text-input-block label {
+  @apply flex flex-col space-y-1 max-w-xs w-full;
+}
+.text-input-block .text-input-label {
+  @apply text-base font-medium;
+}
+.text-input-block .group-input .input-addon {
+  @apply px-3 flex items-center;
+}
+.text-input-block .group-input .input-addon.right-addon {
+  @apply pl-0;
+}
+.text-input-block .group-input .input-addon.inner-label {
+  @apply bg-grey-50 text-sm;
+}
+.text-input-block .group-input .input-addon.left-addon {
+  @apply pr-0;
+}
+
+.text-input-block .group-input {
+  @apply border border-grey-100 rounded-md flex flex-row overflow-hidden;
+}
+.text-input-block .group-input .inner-input-box:focus,
+.text-input-block .group-input .inner-input-box:hover {
+  outline: 0;
+  border: 0;
+}
+.text-input-block.text-input-disabled .group-input .material-icons {
+  @apply text-grey-200 bg-grey-50;
+}
+.text-input-block .group-input .material-icons {
+  @apply text-grey-800;
+}
+.text-input-block .group-input .inner-input-box {
+  @apply p-3 text-grey-800 text-base w-full;
+}
+.text-input-block.input-comfortable .input-box,
+.text-input-block.input-comfortable .inner-input-box {
+  @apply p-3 text-grey-800 text-base;
+}
+.text-input-block.input-compact .input-box,
+.text-input-block.input-compact .inner-input-box,
+.text-input-block.input-compact .PhoneInputInput {
+  @apply py-1.5 px-3 text-grey-800 text-sm;
+}
+
+.text-input-block .input-box {
+  @apply border border-grey-100  rounded-md ring-0 ring-offset-0 ring-grey-800 ring-offset-grey-800;
+}
+.text-input-block .input-box::placeholder,
+.text-input-block .inner-input-box::placeholder {
+  @apply text-grey-200;
+}
+
+.input-textarea {
+  @apply h-36;
+}
+
+.text-input-disabled.text-input-block .input-addon {
+  @apply bg-grey-50;
+}
+.text-input-block .input-box:disabled,
+.text-input-block .inner-input-box:disabled {
+  @apply text-grey-200 bg-grey-50;
+}
+.text-input-block .group-input:hover,
+.text-input-block .group-input:focus-within,
+.text-input-block .input-box:focus,
+.text-input-block .input-box:hover,
+.PhoneInputInput:hover,
+.PhoneInputInput:focus,
+.input-textarea:hover,
+.input-textarea:focus {
+  @apply border-grey-800 ring-0 ring-offset-0;
+  outline: 0;
+  box-shadow: none;
+}
+.text-input-block:focus-visible {
+  outline: 0;
+}
+
+.text-input-block .input-help {
+  @apply text-base text-grey-400;
+}
+
+.text-input-disabled.text-input-block .text-input-label,
+.text-input-disabled.text-input-block .input-help {
+  @apply text-grey-200;
+}
+.PhoneInput {
+  @apply flex flex-row w-full;
+}
+.text-input-block .PhoneInputCountry {
+  @apply bg-grey-50 text-sm flex items-center px-2 relative overflow-hidden;
+  width: 60px;
+}
+
+.PhoneInputCountryIcon {
+  width: 24px;
+}
+.PhoneInputInput {
+  @apply p-3 text-grey-800 text-base w-full;
+}
+.PhoneInputCountrySelect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  border: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.PhoneInputCountrySelectArrow {
+  @apply border-grey-800;
+  border: solid black;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 3px;
+  margin-left: 5px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+/* Input Text end   */

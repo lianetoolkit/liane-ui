@@ -51,7 +51,7 @@ export const IconButton: FC<IconButtonProps> = ({
   switch (color) {
     case 'primary':
       extraClasses += `${
-        extraClasses === '' ? `text-darkerGray` : ''
+        extraClasses === '' ? `text-grey-800` : ''
       } hover:bg-gray-100 focus:bg-gray-200`;
       if (shaped) extraClasses += ` ${inverse ? `bg-white` : `bg-gray-100`} `;
       break;

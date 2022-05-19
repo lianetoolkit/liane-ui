@@ -33,7 +33,7 @@ export const Tag: FC<TagProps> = ({
   disabled,
 }) => {
   let sizeClass = 'text-sm';
-  let tagColor = 'text-darkGray';
+  let tagColor = 'text-grey-300';
   let tagBg = '';
   let tagBorder = '';
 
@@ -53,29 +53,29 @@ export const Tag: FC<TagProps> = ({
       tagBorder = 'border-gray-200';
     }
     if (onClick || onClose) {
-      tagColor = 'text-darkerGray';
+      tagColor = 'text-grey-800';
       tagBg +=
         'hover:bg-gray-50 focus:bg-purple focus:border-purple focus:text-white';
     } else {
-      tagColor = 'text-darkGray';
+      tagColor = 'text-grey-300';
     }
   }
 
   switch (color) {
     case 'lightPurple':
-      tagColor = 'text-darkerGray';
+      tagColor = 'text-grey-800';
       tagBorder = 'bg-purpleLight-25';
       tagBg =
         'bg-purpleLight-25 hover:bg-purpleLight-50 focus:bg-purpleLight-75';
       break;
     case 'lightRed':
       tagBorder = 'bg-red-50';
-      tagColor = 'text-darkerGray';
+      tagColor = 'text-grey-800';
       tagBg = 'bg-red-50 hover:bg-red-100 focus:bg-red-200';
       break;
     case 'lightGreen':
       tagBorder = 'bg-green-50';
-      tagColor = 'text-darkerGray';
+      tagColor = 'text-grey-800';
       tagBg = 'bg-green-50 hover:bg-green-100 focus:bg-green-200';
       break;
     case 'purple':
