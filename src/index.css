@@ -178,11 +178,15 @@
   filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.24))
     drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.16));
 }
+.liu-body-td-expandable:hover,
 .table-sortable .liu-header-th:hover {
   @apply bg-grey-50;
 }
 .liu-header-th {
   @apply p-4 text-base font-medium border-b border-grey-100 text-grey-800;
+}
+.liu-body-td {
+  @apply border-b border-grey-100 text-base font-normal py-3 px-4 text-grey-800;
 }
 .table-title thead tr:nth-child(1) .liu-header-th:nth-child(1) {
   @apply text-2xl text-left;
@@ -207,4 +211,5 @@
 .arrow-up.active {
   border-bottom: 5px solid #212121;
 }
+
 /* Table End */

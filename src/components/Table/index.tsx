@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { useTable, useSortBy } from 'react-table';
+import { useTable, useSortBy, useExpanded } from 'react-table';
 
 export interface TableProps {
   style?: any;
@@ -40,9 +40,10 @@ export const Table: FC<TableProps> = ({
         : columns,
       data,
     },
-    useSortBy
+    useSortBy,
+    useExpanded
   );
-
+  console.log(data);
   return (
     <div
       className={`liu-table-wrapper  ${className ?? ``}`}
@@ -100,14 +101,17 @@ export const Table: FC<TableProps> = ({
         <tbody {...getTableBodyProps()}>
           {rows.map((row: any, i) => {
             prepareRow(row);
+            console.log('row.canExpand', row.canExpand);
             return (
-              <tr {...row.getRowProps()} key={`row-${i}`}>
+              <tr
+                {...row.getRowProps()}
+                key={`row-${i}`}
+                {...row.getToggleRowExpandedProps()}
+                className={`${row.canExpand ? `liu-body-td-expandable` : ``}`}
+              >
                 {row.cells.map((cell: any) => {
                   return (
-                    <td
-                      {...cell.getCellProps()}
-                      className={`border-b border-grey-100 text-base font-normal py-3 px-4 text-grey-800`}
-                    >
+                    <td {...cell.getCellProps()} className={`liu-body-td `}>
                       {cell.render('Cell')}
                     </td>
                   );

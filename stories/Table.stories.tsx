@@ -27,6 +27,7 @@ const Template: Story<TableProps> = (args) => <Table {...args} />;
 // https://storybook.js.org/docs/react/workflows/unit-testing
 export const Default = Template.bind({});
 export const Sortable = Template.bind({});
+export const Expandable = Template.bind({});
 
 const data = [
   {
@@ -73,6 +74,20 @@ Default.args = {
 Sortable.args = {
   columns: columns,
   data: data,
+  shadow: false,
+  sortable: true,
+};
+
+Expandable.args = {
+  columns: columns,
+  data: data.map((item) => {
+    item['subRows'] = [
+      {
+        extra: 'Adding extra content',
+      },
+    ];
+    return item;
+  }),
   shadow: false,
   sortable: true,
 };
