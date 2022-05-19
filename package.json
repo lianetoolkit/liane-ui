@@ -63,6 +63,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.14.2",
+    "@babel/plugin-proposal-private-methods": "^7.17.12",
     "@material-ui/core": "^4.11.4",
     "@size-limit/preset-small-lib": "^4.10.2",
     "@storybook/addon-essentials": "^6.2.9",
@@ -95,5 +96,9 @@
     "tsdx": "^0.14.1",
     "tslib": "^2.2.0",
     "typescript": "^4.2.4"
+  },
+  "dependencies": {
+    "@types/react-table": "^7.7.12",
+    "react-table": "^7.8.0"
   }
 }
