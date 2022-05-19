@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { useTable } from 'react-table';
+import { useTable, useSortBy } from 'react-table';
 
 export interface TableProps {
   style?: any;
@@ -7,7 +7,9 @@ export interface TableProps {
   id?: string;
   columns: [];
   data: [];
+  title: string;
   shadow: boolean;
+  sortable: boolean;
 }
 
 export const Table: FC<TableProps> = ({
@@ -16,6 +18,9 @@ export const Table: FC<TableProps> = ({
   style,
   id,
   className,
+  title,
+  shadow = false,
+  sortable = false,
 }) => {
   const {
     getTableProps,
@@ -23,10 +28,20 @@ export const Table: FC<TableProps> = ({
     headerGroups,
     rows,
     prepareRow,
-  } = useTable({
-    columns,
-    data,
-  });
+  } = useTable(
+    {
+      columns: title
+        ? [
+            {
+              Header: title,
+              columns: columns,
+            },
+          ]
+        : columns,
+      data,
+    },
+    useSortBy
+  );
 
   return (
     <div
@@ -34,16 +49,49 @@ export const Table: FC<TableProps> = ({
       id={id}
       style={style ?? {}}
     >
-      <table {...getTableProps()}>
+      <table
+        {...getTableProps()}
+        className={`${title ? `table-title ` : ``} ${
+          sortable ? `table-sortable` : ``
+        } table-auto rounded-sm bg-white ${
+          shadow
+            ? `table-shadow  border border-white`
+            : 'border border-grey-100'
+        }`}
+      >
         <thead>
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
                 <th
-                  {...column.getHeaderProps()}
-                  className={`px-4 text-base font-medium`}
+                  {...column.getHeaderProps(
+                    sortable ? column.getSortByToggleProps() : undefined
+                  )}
+                  className={`liu-header-th`}
                 >
-                  {column.render('Header')}
+                  <span className="flex flex-row space-x-2 items-center">
+                    <span>{column.render('Header')}</span>
+                    <span className="flex flex-col w-3 space-y-1">
+                      {column.isSorted ? (
+                        column.isSortedDesc ? (
+                          <>
+                            <span className="arrow-up "></span>
+                            <span className="arrow-down active"></span>
+                          </>
+                        ) : (
+                          <>
+                            <span className="arrow-up active"></span>
+                            <span className="arrow-down "></span>
+                          </>
+                        )
+                      ) : (
+                        <>
+                          <span className="arrow-up"></span>
+                          <span className="arrow-down"></span>
+                        </>
+                      )}
+                    </span>
+                  </span>
                 </th>
               ))}
             </tr>
@@ -56,7 +104,12 @@ export const Table: FC<TableProps> = ({
               <tr {...row.getRowProps()} key={`row-${i}`}>
                 {row.cells.map((cell: any) => {
                   return (
-                    <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                    <td
+                      {...cell.getCellProps()}
+                      className={`border-b border-grey-100 text-base font-normal py-3 px-4 text-grey-800`}
+                    >
+                      {cell.render('Cell')}
+                    </td>
                   );
                 })}
               </tr>

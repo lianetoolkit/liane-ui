@@ -172,3 +172,39 @@
   -webkit-transform: rotate(45deg);
 }
 /* Input Text end   */
+
+/* Table Start */
+.table-shadow {
+  filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.24))
+    drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.16));
+}
+.table-sortable .liu-header-th:hover {
+  @apply bg-grey-50;
+}
+.liu-header-th {
+  @apply p-4 text-base font-medium border-b border-grey-100 text-grey-800;
+}
+.table-title thead tr:nth-child(1) .liu-header-th:nth-child(1) {
+  @apply text-2xl text-left;
+}
+.arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #bdbdbd;
+}
+.arrow-down.active {
+  border-top: 5px solid #212121;
+}
+.arrow-up {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #bdbdbd;
+}
+.arrow-up.active {
+  border-bottom: 5px solid #212121;
+}
+/* Table End */
