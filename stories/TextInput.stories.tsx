@@ -4,18 +4,18 @@ import { TextInput, TextInputProps } from '../src/components/TextInput';
 import '../src/index.css';
 
 const meta: Meta = {
-    title: 'TextInput',
-    component: TextInput,
-    argTypes: {
-        children: {
-            control: {
-                type: 'text',
-            },
-        },
+  title: 'TextInput',
+  component: TextInput,
+  argTypes: {
+    children: {
+      control: {
+        type: 'text',
+      },
     },
-    parameters: {
-        controls: { expanded: true },
-    },
+  },
+  parameters: {
+    controls: { expanded: true },
+  },
 };
 
 export default meta;
@@ -31,37 +31,45 @@ export const innerLabel = Template.bind({});
 export const Telephone = Template.bind({});
 
 Default.args = {
-    label: 'Full Name',
-    help: 'As printed in your ID',
-    placeholder: 'John Doe',
-    type: "text"
+  label: 'Full Name',
+  help: 'As printed in your ID',
+  placeholder: 'John Doe',
+  type: 'text',
 };
 withIcon.args = {
-    label: 'Birthdate',
-    placeholder: 'AAAA/MM/DD',
-    type: "text",
-    icon: 'calendar_month'
+  label: 'Birthdate',
+  placeholder: 'AAAA/MM/DD',
+  type: 'text',
+  icon: 'calendar_month',
 };
 Password.args = {
-    label: 'Password',
-    help: 'Enter a strong password',
-    placeholder: 'Choose wisely',
-    type: "password"
-
+  label: 'Password',
+  help: 'Enter a strong password',
+  placeholder: 'Choose wisely',
+  rules: [
+    {
+      regex: /[ `!@#$%^&*()_+\-=\[\]{};': "\\|,.<>\/?~]/,
+      msg: 'Debe incluir un caracter especial',
+    },
+    {
+      regex: /^.{6,}$/,
+      msg: 'Debe incluir al menos 6 caracteres',
+    },
+  ],
+  type: 'password',
 };
 innerLabel.args = {
-    label: 'Website',
-    help: 'Site url',
-    placeholder: 'www.site.com',
-    type: "text",
-    labelLeading: 'http://',
-    labelTrailing: '.ar'
-}
-Telephone.args = {
-    label: 'Telephone',
-    help: 'stop calling',
-    defaultCountry: 'BR',
-    placeholder: '+55 555 555 555',
-    type: "tel"
+  label: 'Website',
+  help: 'Site url',
+  placeholder: 'www.site.com',
+  type: 'text',
+  labelLeading: 'http://',
+  labelTrailing: '.ar',
 };
-
+Telephone.args = {
+  label: 'Telephone',
+  help: 'stop calling',
+  defaultCountry: 'BR',
+  placeholder: '+55 555 555 555',
+  type: 'tel',
+};

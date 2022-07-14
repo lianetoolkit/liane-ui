@@ -23,6 +23,10 @@ export interface TextInputProps {
   onChange?: Function;
   onFocus?: Function;
   classNameWrapper?: string;
+  rules: Array<{
+    regex: string;
+    msg: string;
+  }>;
 }
 
 export const TextInput: FC<TextInputProps> = ({
@@ -44,12 +48,27 @@ export const TextInput: FC<TextInputProps> = ({
   defaultValue,
   defaultCountry,
   onChange,
+  rules,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [value, setValue] = useState(defaultValue ?? '');
+  const [errors, setErrors] = useState<string[]>([]);
+  const [pristine, setPristine] = useState(true);
+  const handleValidation = () => {
+    const newErrors: React.SetStateAction<string[]> = [];
+    rules.map((rule) => {
+      const regex = new RegExp(rule.regex);
+      if (!regex.test(value)) {
+        newErrors.push(rule.msg);
+      }
+    });
+    setErrors(newErrors);
+  };
   const handleChange = (val: any) => {
     onChange && onChange(val);
+    if (pristine) setPristine(false);
     setValue(val);
+    if (rules) handleValidation();
   };
   const ret = (() => {
     switch (type) {
@@ -65,31 +84,46 @@ export const TextInput: FC<TextInputProps> = ({
         );
       case 'password': {
         return (
-          <div className="group-input">
-            <input
-              name={name}
-              type={showPassword ? `text` : `password`}
-              placeholder={placeholder ?? ``}
-              className={`inner-input-box ${className ?? ``}`}
-              disabled={disabled ?? false}
-              id={id}
-              value={value}
-              onChange={(ev) => {
-                handleChange(ev.target.value);
-              }}
-            />
-            <button
-              className="right-addon input-addon"
-              onClick={() => setShowPassword(!showPassword)}
+          <>
+            <div
+              className={`group-input ${
+                !pristine && errors.length > 0 ? `input-error` : ``
+              } ${!pristine && errors.length === 0 ? `input-success` : ``}`}
             >
-              {!showPassword ? `🙈` : `🙉`}
-            </button>
-          </div>
+              <input
+                name={name}
+                type={showPassword ? `text` : `password`}
+                placeholder={placeholder ?? ``}
+                className={`inner-input-box ${className ?? ``} `}
+                disabled={disabled ?? false}
+                id={id}
+                value={value}
+                onChange={(ev) => {
+                  handleChange(ev.target.value);
+                }}
+              />
+              <button
+                className="right-addon input-addon"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {!showPassword ? `🙈` : `🙉`}
+              </button>
+            </div>
+            {errors.length > 0
+              ? errors.map((error) => (
+                  <small className="text-red">{error}</small>
+                ))
+              : null}
+          </>
         );
       }
       case 'tel': {
         return (
-          <div className="group-input">
+          <div
+            className={`group-input ${
+              !pristine && errors.length > 0 ? `input-error` : ``
+            } ${!pristine && errors.length === 0 ? `input-success` : ``}`}
+          >
             <PhoneInput
               country={defaultCountry ?? ''}
               placeholder="Enter phone number"

@@ -69,6 +69,13 @@
 .text-input-block .group-input {
   @apply border border-grey-100 rounded-md flex flex-row overflow-hidden;
 }
+.text-input-block .group-input.input-error {
+  @apply border-red !important;
+}
+.text-input-block .group-input.input-success {
+  @apply border-green !important;
+}
+
 .text-input-block .group-input .inner-input-box:focus,
 .text-input-block .group-input .inner-input-box:hover {
   outline: 0;
