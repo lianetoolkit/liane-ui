@@ -77,17 +77,20 @@ Sortable.args = {
   shadow: false,
   sortable: true,
 };
+const expand = [...data];
 
+// expand.map((item) => {
+//   item['subRows'] = [
+//     {
+//       extra: 'Adding extra content',
+//     },
+//   ];
+//   return item;
+// });
+console.log(data, expand);
 Expandable.args = {
   columns: columns,
-  data: data.map((item) => {
-    item['subRows'] = [
-      {
-        extra: 'Adding extra content',
-      },
-    ];
-    return item;
-  }),
+  data: expand,
   shadow: false,
   sortable: true,
 };
